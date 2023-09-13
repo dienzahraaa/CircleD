@@ -3,22 +3,40 @@ from main.models import Item
 
 class ItemTestCase(TestCase):
     def setUp(self):
-        Item.objects.create(name='KitKat', category='Chocolate', 
-                            price=15000, amount=24, 
-                            description= '''The perfect balance of chocolate and wafer. 
-                            From classic fingers to chunky, original to peanut butter, 
-                            there is a KitKat for everyone.''')
         Item.objects.create(name='Chitato', category='Chips', 
                             price=9000, amount=0, 
                             description= '''Made from selected real potatoes thinly sliced, 
                             brings a crunchier sensation in every bite.''')
-        
-    def test_create_product(self):
-        
-    def test_product_is_available(self):
 
-        assertEquals("DEK-082212345678-75", NotaGenerator.generateId("Dek Depe", "082212345678"));
+    def test_data_create_item(self):
+        items = Item.objects.all().count()
+        self.assertEqual(items, 1)
 
+    def test_name_item_is_correct(self):
+        chitato = Item.objects.get(name='Chitato')
+        max_length = chitato._meta.get_field('name').max_length
+        self.assertLessEqual(len(chitato.name), max_length)
+
+    def test_category_item_is_correct(self):
+        chitato = Item.objects.get(name='Chitato')
+        max_length = chitato._meta.get_field('category').max_length
+        self.assertLessEqual(len(chitato.category), max_length)
+
+    def test_price_item_is_int(self):
+        chitato = Item.objects.get(name='Chitato')
+        self.assertIsInstance(chitato.price, int)
+
+    def test_amount_item_is_int(self):
+        chitato = Item.objects.get(name='Chitato')
+        self.assertIsInstance(chitato.amount, int)
+
+    def test_description_item_is_text_field(self):
+        chitato = Item.objects.get(name='Chitato')
+        self.assertIsInstance(chitato.description, str)
+        
+
+
+    
 class mainTest(TestCase):
     def test_main_url_is_exist(self):
         response = Client().get('/main/')
