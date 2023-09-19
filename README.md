@@ -4,60 +4,188 @@ NPM : 2206828033
 
 Kelas : PBP-F
 
-# TUGAS 2
+# TUGAS 3
 ##  1. Apa perbedaan antara form POST dan form GET dalam Django?
 
 Pada dasarnya form POST digunakan untuk mengirim data ke server, yang bila proses tersebut berhasil akan mengembalika kode status HTTp 201, sedangkan GET digunakan untuk membaca data dari server web, yang bila proses berhasil akan mengembalikan kode status HTTP 200. Namun, secara spesifik, form POST dan GET dalam Django dapat diklasifikasi dalam beberapa poin
 - Tampilan Nilai Variabel di URL:
 
   POST: Nilai variabel tidak ditampilkan di URL, sehingga lebih aman karena data tidak terlihat secara terbuka di URL.
-
   GET: Nilai variabel ditampilkan di URL, sehingga pengguna dapat dengan mudah memasukkan nilai variabel baru. Ini kurang aman karena data terlihat dalam URL           dan dapat dengan mudah diakses atau dimodifikasi oleh pengguna lain.
 - Panjang String:
 
   POST: Tidak ada pembatasan panjang string yang ditransmisikan melalui metode POST.
-
   GET: Panjang string yang dikirim melalui metode GET dibatasi sampai sekitar 2047 karakter karena keterbatasan URL.
 - Pengambilan Variabel:
 
   POST: Variabel diambil menggunakan request.POST.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui formulir.
-
   GET: Variabel diambil langsung dari URL menggunakan request.GET.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui tautan atau query string.
 - Tujuan Penggunaan:
 
   POST: Form POST biasanya digunakan untuk mengirim data-data penting seperti kata sandi atau data yang ingin disimpan di server.
-
   GET: Form GET biasanya digunakan untuk mengirim data-data tidak penting atau untuk membaca data dari server. Ini sering digunakan untuk pencarian atau filter.
 
 
 
 ## 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
-JSON vs XML
-A syntax for storing and exchanging data
-using XML
-• Fetch an XML document
-• Use the XML DOM to loop through the document
-• Extract values and store in variables
-using JSON
-• Fetch a JSON string
-• Use JSON.parse() to parse the JSON string
-• is an easier to use alternative to XML.
-• For AJAX applications, JSON is faster and easier than XML
-SLIDE 30
 
+Pertama, cara mereka menyimpan elemen berbeda. JSON menyimpan elemen secara efisien, meskipun tidak selalu mudah dilihat. Sementara XML menyimpan elemen dengan cara terstruktur yang mudah dibaca oleh manusia dan mesin, namun cenderung kurang efisien.
+
+Kedua, dalam hal struktur data, XML menggunakan bahasa markup yang mengandalkan tag dan atribut untuk mendefinisikan struktur data. JSON, di sisi lain, menggunakan format teks dengan sintaksis mirip objek JavaScript yang berupa pasangan nama-nilai (key-value pairs). JSON lebih ringkas daripada XML, membuatnya lebih efisien dalam penggunaan ruang.
+
+Ketiga, kepakaran mereka berbeda. XML dapat digunakan dengan berbagai bahasa pemrograman dan tidak terkait dengan bahasa tertentu, meskipun lebih verbose. JSON memiliki akar dalam JavaScript, tetapi telah diterima secara luas sebagai format pertukaran data di berbagai bahasa pemrograman. HTML, di sisi lain, digunakan eksklusif untuk membuat halaman web dengan fokus pada tampilan dan perilaku, bukan pertukaran data mentah.
+
+Terakhir, dalam penggunaan umum, XML sering digunakan untuk data dengan struktur yang sangat kustom dan memerlukan validasi. JSON populer dalam pengembangan web, terutama dalam konteks seperti AJAX dan RESTful API, serta digunakan sebagai format konfigurasi dan penyimpanan data di aplikasi. HTML digunakan khusus untuk membuat halaman web dan menampilkan konten di web.
 
 ## 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
-https://appkey.id/pembuatan-website/web-programming/json-adalah/
+JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena memiliki sejumlah keunggulan yang membuatnya menjadi pilihan yang populer. Pertama-tama, JSON adalah format bahasa yang ringan dan mudah dibaca oleh manusia, sehingga lebih mudah untuk dikonsumsi oleh pengembang dan lebih efisien dalam hal ukuran file. Selain itu, penggunaan JSON tidak memerlukan DOM XML yang kompleks, seperti yang diperlukan dalam penggunaan XML, yang berarti penggunaan string yang lebih panjang dan kompleks tidak diperlukan. JSON juga memiliki kecepatan penguraian yang lebih baik, karena memiliki struktur yang lebih sederhana, sehingga memungkinkan transfer data menjadi lebih cepat.
 
+Selain itu, JSON memiliki kemampuan untuk menyimpan data dalam bentuk array, yang memudahkan transfer data. Karena JSON adalah berbasis JavaScript, yang dikenal karena kesederhanaannya, pengembangan menggunakan JSON menjadi lebih mudah dan responsif terhadap permintaan. Keunggulan lainnya adalah kemampuan JSON dalam menangani API untuk aplikasi web atau desktop, serta dukungan yang luas untuk bahasa pemrograman lainnya, seperti PostgreSQL dan JavaScript. Kesederhanaan dan fleksibilitas JSON membuatnya menjadi pilihan yang sangat berguna dalam pertukaran data antar aplikasi web dan server.
 
 ## 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 ### Membuat input form untuk menambahkan objek model pada app sebelumnya.
+
+Agar dapat mengatur form yang digunakan dalam aplikasi CircleD saya perlu membuat berkas baru bernama `forms.py` pada direktori main. Dalam berkas tersebut saya menambahkan kode:
+  
+    from django.forms import ModelForm
+    from main.models import Item
+    
+    class ProductForm(ModelForm):
+        class Meta:
+            model = Item
+            fields = ["name", "category", "price", "amount", "description"]
+Dengan kode di atas, saya membuat form dengan nama productform yang terkait dengan Item yang telah say abuat pada tugas sebelumnyya dengan mencantumkan beberapa field. Dengan begitu, nantinya pengguna aplikasi dapat membuat form dengan model Item dalam aplikasi CircleD, yang memungkinkan dalam menginput data baru dalam aplikasi ke database secara otomatis.
+
+Selanjutnya saya mengimport modul dan membuat fungsii baru pada berkas views.py. Hal ini ditujukan karena peran views.py sebagai penanganan HTTP request oleh pengguna CircleD, sehingga saat client mengisi dan mengirimkan form, aplikasi tahu apa yang harus dilakukan atas permintaan tersebut. Modul dan kode yang perlu ditambahkan dalam berkas views.py adalah:
+
+    from django.http import HttpResponseRedirect
+    from main.forms import ProductForm
+    from django.urls import reverse
+
+    def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+Maksud dari fungsi `create_product` adalah untuk mengelola proses penambahan produk baru dalam aplikasi CircleD. Ketika pengguna mengakses halaman "Tambah Produk" fungsi ini pertama-tama membuat sebuah formulir kosong yang disebut form. Formulir ini digunakan untuk mengumpulkan informasi yang diperlukan untuk membuat produk baru, seperti nama, kategori, harga, jumlah, dan deskripsi produk. Selanjutnya, fungsi ini memeriksa apakah pengguna telah mengisi formulir dengan benar dan mengirimkannya. Jika formulir valid dan permintaan merupakan tipe POST, artinya data produk telah diisi dengan benar dan siap untuk disimpan. Ketika kondisi tersebut terpenuhi, fungsi form.save() digunakan untuk menyimpan data produk ke dalam database aplikasi. Terakhir, setelah data produk berhasil disimpan, pengguna akan redirect ke halaman utama menggunakan HttpResponseRedirect. 
+
+Agar data yang dimasukkan client dapat tampil pada halaman utama, saya memperbarui fungsi show_main dalam berkas views.py. yakni menambahkan 
+              
+    'items': items,
+
+dalam context, sehingga akan mengambil data semua item dan menampilkannya di halaman utama. Saya juga perlu memperbarui berkas `urls.py` saya agar aplikasi CircleD saya dapat mengarahkan request client ke URL yang sesuai. Saya menambahkan import create_product dan menambahkan path URL agar dapat mengakses fungsi create_product.
+
+      path('create-product', create_product, name='create_product'),
+
+Selanjutnya berkas HTML `create_product.html` perlu dibuat untuk penyediaan user interface yang memungkinkan pengguna untuk memasukkan data produk baru. Berkas ini berfungsi untuk menampilkan formulir yang dapat diisi oleh pengguna dengan informasi produk, seperti nama, kategori, harga, jumlah, dan deskripsi. Selain itu, HTML memungkinkan validasi input, pengaturan tampilan halaman, dan penggunaan template untuk menampilkan dan mengelola data produk. Isi dalam berkas create_product.html saya isi dengan
+
+
+      {% extends 'base.html' %} 
+
+      {% block content %}
+      <h1>Add New Product</h1>
+      
+      <form method="POST">
+          {% csrf_token %}
+          <table>
+              {{ form.as_table }}
+              <tr>
+                  <td></td>
+                  <td>
+                      <input type="submit" value="Add Product"/>
+                  </td>
+              </tr>
+          </table>
+      </form>
+      
+      {% endblock %}
+Dan terakhir saya memperbarui berkas main.html saya. Hal ini ditujukan agar data items dapat ditampilkan dalam halamn utama da;amm bentuk tabel dan tombol untuk menambahkan produk yang akan mengarahkan ke halaman form yang telah dibuat sebelumnya.
+
+      ...
+       <table>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+       
+        {% for item in items %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.description}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+    ...
+
+
 ### Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+Sebelumnya, saya telah membuat fungsi views dalam format HTML, namun terdapat beberapa hal yang saya ubah, sehingga dalam Tugas 3 untuk fungsinya sebagai berikut
+
+      def show_main(request):
+          items = Item.objects.all()
+          item_count = len(items)
+          context = {
+              'name': 'Dien',
+              'class': 'F',
+              'items': items,
+              'item_count' : item_count
+          }
+      
+          return render(request, "main.html", context)
+agar client dapat melihat tampilan data dalam format XML, JSON, XML by ID, dan JSON by ID. Saya menambahkan 4 fungsi lainnya yakni, 
+
+    def show_xml(request):
+        data = Item.objects.all()
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    
+    def show_json(request):
+        data = Item.objects.all()
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    
+    def show_xml_by_id(request, id):
+        data = Item.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    
+    def show_json_by_id(request, id):
+        data = Item.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+Fungsi show_xml dan show_json digunakan untuk mengambil semua data Item dari database dan mengirimkannya kembali sebagai respons dalam format XML ataupun JSON. Sedangkan, fungsi show_xml_by_id dan show_json_by_id digunakan untuk mengambil data Item berdasarkan ID yang diberikan dalam permintaan saja, kemudian mengirimkannya kembali dalam format XML atau JSON. 
 ### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+Terakhir, ketika url tertentu terakses maka akan memanggil fungsi view yang bersesuaian agar flow aplikasi sesuai dengan permintaan client. Dengan begitu, saya perlu menambahkan 4 path baru pada berkas `urls.py` yakni,
+
+          ...
+          path('xml/', show_xml, name='show_xml'), 
+          path('json/', show_json, name='show_json'), 
+          path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+          path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
+          ...
 
 ## 5.  Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/4bc23d53-e1ab-4c7b-9aac-d3fbcb1df72a)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/ae75d949-486c-43a0-822a-c4a58335dfee)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/b344c2d1-8597-4b35-87b3-97cb25574c32)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/ed14fb65-cf95-4a71-bf2d-d370d423c8b9)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/f56b6fc8-2563-4b88-9557-92b97cb98cfe)
 
-# TUGAS 1                      
+# TUGAS 2                      
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 Sesuai dengan checklist pertama saya membuat proyek Django baru bernama CircleD. Namun, sebelum proyek dapat terbentuk, saya perlu melakukan beberapa tahapan awal terlebih dahulu seperti mensetup direktori dan repositori GitHub baru untuk proyek ini. Dari direktori yang sudah saya sesuaikan pada local laptop tersebut, saya melakukan instalasi Django dan inisiasi proyek Django yang akan dibuat, dengan menggunakan virtual environment. Cara membuat(line 1) dan mengaktifkan(line 2) virtual environment:
         
@@ -144,4 +272,7 @@ Virtual environment digunakan untuk mengisolasi package dan dependencies. Depend
 - Perbedaan ketiganya terletak pada komponen-komponennya dalam menjalankan tanggung jawabnya. Secara keseluruhan komponen View dan Model memiliki tanggung jawab yang sama di antara ketiganya yakni Model bertugas menyimpan data dan logika aplikasi, View bertanggung jawab dalam menampilkan user interface. Tetapi ketiganya memiliki perbedaan pada salah satu komponennya. Seperti MVC karena memiliki komponen controller, maka komponen ini lebih mendukung dalam pengembangan yang terfokuskan pada pengendalian alur kedua komponen lainnya. MVT karena memiliki komponen Template maka lebih terfokuskan untuk pengembangan yang kode HTMLnya perlu dipisahkan dari logika aplikasi. Sedangkan, MVVM karena memiliki komponen ViewModel. sangat terfokus pada tampilan user interface sehingga konsep ini lebih sesuai digunakan untuk pegembangan yang terfokuskan pada tampilan user interface yang kompleks. 
 
 
-
+references:
+https://appkey.id/pembuatan-website/web-programming/json-adalah/
+PPT PBP
+https://pbp-fasilkom-ui.github.io/ganjil-2024/
