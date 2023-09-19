@@ -8,6 +8,8 @@
 
     <h5>Class:</h5>
     <p>{{class}}</p>
+
+    <h5>Kamu menyimpan {{ item_count }} item pada aplikasi ini</h5>
     <table>
         <tr>
             <th>Name</th>
@@ -19,13 +21,13 @@
     
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
     
-        {% for product in products %}
+        {% for item in items %}
             <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.amount}}</td>
-                <td>{{product.description}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.description}}</td>
             </tr>
         {% endfor %}
     </table>

@@ -13,8 +13,8 @@ def show_main(request):
     context = {
         'name': 'Dien',
         'class': 'F',
-        'products': items,
-        "item_count" : item_count
+        'items': items,
+        'item_count' : item_count
     }
 
     return render(request, "main.html", context)
