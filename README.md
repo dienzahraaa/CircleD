@@ -4,7 +4,60 @@ NPM : 2206828033
 
 Kelas : PBP-F
 
+# TUGAS 2
+##  1. Apa perbedaan antara form POST dan form GET dalam Django?
 
+Pada dasarnya form POST digunakan untuk mengirim data ke server, yang bila proses tersebut berhasil akan mengembalika kode status HTTp 201, sedangkan GET digunakan untuk membaca data dari server web, yang bila proses berhasil akan mengembalikan kode status HTTP 200. Namun, secara spesifik, form POST dan GET dalam Django dapat diklasifikasi dalam beberapa poin
+- Tampilan Nilai Variabel di URL:
+
+  POST: Nilai variabel tidak ditampilkan di URL, sehingga lebih aman karena data tidak terlihat secara terbuka di URL.
+
+  GET: Nilai variabel ditampilkan di URL, sehingga pengguna dapat dengan mudah memasukkan nilai variabel baru. Ini kurang aman karena data terlihat dalam URL           dan dapat dengan mudah diakses atau dimodifikasi oleh pengguna lain.
+- Panjang String:
+
+  POST: Tidak ada pembatasan panjang string yang ditransmisikan melalui metode POST.
+
+  GET: Panjang string yang dikirim melalui metode GET dibatasi sampai sekitar 2047 karakter karena keterbatasan URL.
+- Pengambilan Variabel:
+
+  POST: Variabel diambil menggunakan request.POST.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui formulir.
+
+  GET: Variabel diambil langsung dari URL menggunakan request.GET.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui tautan atau query string.
+- Tujuan Penggunaan:
+
+  POST: Form POST biasanya digunakan untuk mengirim data-data penting seperti kata sandi atau data yang ingin disimpan di server.
+
+  GET: Form GET biasanya digunakan untuk mengirim data-data tidak penting atau untuk membaca data dari server. Ini sering digunakan untuk pencarian atau filter.
+
+
+
+## 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+JSON vs XML
+A syntax for storing and exchanging data
+using XML
+• Fetch an XML document
+• Use the XML DOM to loop through the document
+• Extract values and store in variables
+using JSON
+• Fetch a JSON string
+• Use JSON.parse() to parse the JSON string
+• is an easier to use alternative to XML.
+• For AJAX applications, JSON is faster and easier than XML
+SLIDE 30
+
+
+## 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+https://appkey.id/pembuatan-website/web-programming/json-adalah/
+
+
+## 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### Membuat input form untuk menambahkan objek model pada app sebelumnya.
+### Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+
+## 5.  Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+
+# TUGAS 1                      
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 Sesuai dengan checklist pertama saya membuat proyek Django baru bernama CircleD. Namun, sebelum proyek dapat terbentuk, saya perlu melakukan beberapa tahapan awal terlebih dahulu seperti mensetup direktori dan repositori GitHub baru untuk proyek ini. Dari direktori yang sudah saya sesuaikan pada local laptop tersebut, saya melakukan instalasi Django dan inisiasi proyek Django yang akan dibuat, dengan menggunakan virtual environment. Cara membuat(line 1) dan mengaktifkan(line 2) virtual environment:
         
