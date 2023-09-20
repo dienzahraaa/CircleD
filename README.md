@@ -7,40 +7,34 @@ Kelas : PBP-F
 # TUGAS 3
 ##  1. Apa perbedaan antara form POST dan form GET dalam Django?
 
-Pada dasarnya form POST digunakan untuk mengirim data ke server, yang bila proses tersebut berhasil akan mengembalika kode status HTTp 201, sedangkan GET digunakan untuk membaca data dari server web, yang bila proses berhasil akan mengembalikan kode status HTTP 200. Namun, secara spesifik, form POST dan GET dalam Django dapat diklasifikasi dalam beberapa poin
-- Tampilan Nilai Variabel di URL:
-
-  POST: Nilai variabel tidak ditampilkan di URL, sehingga lebih aman karena data tidak terlihat secara terbuka di URL.
-  GET: Nilai variabel ditampilkan di URL, sehingga pengguna dapat dengan mudah memasukkan nilai variabel baru. Ini kurang aman karena data terlihat dalam URL           dan dapat dengan mudah diakses atau dimodifikasi oleh pengguna lain.
-- Panjang String:
-
-  POST: Tidak ada pembatasan panjang string yang ditransmisikan melalui metode POST.
-  GET: Panjang string yang dikirim melalui metode GET dibatasi sampai sekitar 2047 karakter karena keterbatasan URL.
+Pada dasarnya form POST digunakan untuk mengirim data ke server, yang bila proses tersebut berhasil akan mengembalika kode status HTTP 201, sedangkan GET digunakan untuk membaca data dari server web, yang bila proses berhasil akan mengembalikan kode status HTTP 200. Namun, secara spesifik, perbedaan form POST dan GET dalam Django dapat diklasifikasi dalam beberapa poin
 - Pengambilan Variabel:
 
-  POST: Variabel diambil menggunakan request.POST.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui formulir.
-  GET: Variabel diambil langsung dari URL menggunakan request.GET.get dalam Django. Ini biasanya digunakan untuk mengambil data yang dikirim melalui tautan atau query string.
+  POST: Variabel diambil menggunakan `request.POST.get` dalam Django 
+  GET: Variabel diambil menggunakan `request.GET.get` dalam Django 
+  
 - Tujuan Penggunaan:
 
-  POST: Form POST biasanya digunakan untuk mengirim data-data penting seperti kata sandi atau data yang ingin disimpan di server.
-  GET: Form GET biasanya digunakan untuk mengirim data-data tidak penting atau untuk membaca data dari server. Ini sering digunakan untuk pencarian atau filter.
+  POST: Form POST biasanya digunakan untuk mengirim data-data yang ingin disimpan di server.
+  GET: Form GET biasanya digunakan untuk mengirim data-data untuk membaca data dari server, biasanya digunakan untuk pencarian atau filter.
 
+- Tampilan Nilai Variabel di URL:
 
+  POST: Nilai variabel tidak ditampilkan di URL, sehingga data tidak terlihat secara terbuka di URL.
+  GET: Nilai variabel ditampilkan di URL, sehingga pengguna dapat dengan mudah memasukkan nilai variabel baru, sehingga data terlihat dalam URL dan dapat dengan mudah diakses atau dimodifikasi oleh pengguna lain.
 
 ## 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 
-Pertama, cara mereka menyimpan elemen berbeda. JSON menyimpan elemen secara efisien, meskipun tidak selalu mudah dilihat. Sementara XML menyimpan elemen dengan cara terstruktur yang mudah dibaca oleh manusia dan mesin, namun cenderung kurang efisien.
-
-Kedua, dalam hal struktur data, XML menggunakan bahasa markup yang mengandalkan tag dan atribut untuk mendefinisikan struktur data. JSON, di sisi lain, menggunakan format teks dengan sintaksis mirip objek JavaScript yang berupa pasangan nama-nilai (key-value pairs). JSON lebih ringkas daripada XML, membuatnya lebih efisien dalam penggunaan ruang.
-
-Ketiga, kepakaran mereka berbeda. XML dapat digunakan dengan berbagai bahasa pemrograman dan tidak terkait dengan bahasa tertentu, meskipun lebih verbose. JSON memiliki akar dalam JavaScript, tetapi telah diterima secara luas sebagai format pertukaran data di berbagai bahasa pemrograman. HTML, di sisi lain, digunakan eksklusif untuk membuat halaman web dengan fokus pada tampilan dan perilaku, bukan pertukaran data mentah.
-
-Terakhir, dalam penggunaan umum, XML sering digunakan untuk data dengan struktur yang sangat kustom dan memerlukan validasi. JSON populer dalam pengembangan web, terutama dalam konteks seperti AJAX dan RESTful API, serta digunakan sebagai format konfigurasi dan penyimpanan data di aplikasi. HTML digunakan khusus untuk membuat halaman web dan menampilkan konten di web.
+Ketiganya memiliki perbedaan. XML (eXtensible Markup Language) didesain menjadi self-descriptive. Ini memanfaatkan tag dan atribut untuk mendefinisikan struktur data dengan fleksibilitas yang tinggi. Namun, penulisannya bisa menjadi lebih panjang karena tag pembuka dan penutup yang harus ditambahkan. JSON (JavaScript Object Notation) didesain menjadi self-describing. JSON menggunakan sintaksis mirip objek JavaScript untuk merepresentasikan data dalam bentuk key-value pairs. JSON lebih ringkas dibandingkan dengan XML, sehingga lebih efisien dalam hal penggunaan ruang. Sedangkan, HTML (Hypertext Markup Language) adalah bahasa markup yang khusus digunakan untuk membuat dokumen web. Fokus utamanya adalah pada struktur dan tampilan konten web dengan menggunakan elemen-elemen tetap, seperti tag <div> untuk divisi dan tag <p> untuk paragraf. Perbedaan lain adalah XML dapat digunakan dengan berbagai bahasa pemrograman dan tidak terkait dengan bahasa tertentu. JSON memiliki akar dalam JavaScript, tetapi telah diterima secara luas sebagai format pertukaran data di berbagai bahasa pemrograman. HTML, di sisi lain, digunakan eksklusif untuk membuat halaman web dengan fokus pada tampilan dan perilaku, bukan pertukaran data mentah. Terakhir, XML sering digunakan untuk data dengan struktur yang sangat kustom dan memerlukan validasi. JSON populer dalam pengembangan web, terutama dalam konteks seperti AJAX dan RESTful API, serta digunakan sebagai format konfigurasi dan penyimpanan data di aplikasi. HTML digunakan khusus untuk membuat halaman web dan menampilkan konten di web.
+contoh tampilan JSON
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/e18a8eeb-9153-4633-b86a-224b31261b15)
+contoh tampilan XML
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/c87dee31-5231-45ed-ad54-3b6395dfec2a)
+contoh tampilan HTML
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/af14bee2-d802-4d9f-8059-68b1b1414810)
 
 ## 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
-JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena memiliki sejumlah keunggulan yang membuatnya menjadi pilihan yang populer. Pertama-tama, JSON adalah format bahasa yang ringan dan mudah dibaca oleh manusia, sehingga lebih mudah untuk dikonsumsi oleh pengembang dan lebih efisien dalam hal ukuran file. Selain itu, penggunaan JSON tidak memerlukan DOM XML yang kompleks, seperti yang diperlukan dalam penggunaan XML, yang berarti penggunaan string yang lebih panjang dan kompleks tidak diperlukan. JSON juga memiliki kecepatan penguraian yang lebih baik, karena memiliki struktur yang lebih sederhana, sehingga memungkinkan transfer data menjadi lebih cepat.
-
-Selain itu, JSON memiliki kemampuan untuk menyimpan data dalam bentuk array, yang memudahkan transfer data. Karena JSON adalah berbasis JavaScript, yang dikenal karena kesederhanaannya, pengembangan menggunakan JSON menjadi lebih mudah dan responsif terhadap permintaan. Keunggulan lainnya adalah kemampuan JSON dalam menangani API untuk aplikasi web atau desktop, serta dukungan yang luas untuk bahasa pemrograman lainnya, seperti PostgreSQL dan JavaScript. Kesederhanaan dan fleksibilitas JSON membuatnya menjadi pilihan yang sangat berguna dalam pertukaran data antar aplikasi web dan server.
+Seperti yang sudah disinggung pada pertanyaan sebelumnya, JSON memang populer dalam pengembangan web. Hal tersebut dikarenakan JSON memiliki sejumlah keunggulan yang membuatnya menjadi pilihan yang populer. Pertama, JSON adalah format bahasa yang ringan dan mudah dibaca oleh manusia, sehingga lebih mudah untuk dikonsumsi oleh pengembang dan lebih efisien dalam hal ukuran file. Selain itu, penggunaan JSON tidak memerlukan DOM XML yang kompleks, seperti yang diperlukan dalam penggunaan XML, yang berarti penggunaan string yang lebih panjang dan kompleks tidak diperlukan. JSON juga memiliki kecepatan penguraian yang lebih baik, karena memiliki struktur yang lebih sederhana, sehingga memungkinkan transfer data menjadi lebih cepat. Karena JSON adalah berbasis JavaScript, yang dikenal karena kesederhanaannya, pengembangan menggunakan JSON menjadi lebih mudah dan responsif terhadap permintaan. Keunggulan lainnya adalah kemampuan JSON dalam menangani API untuk aplikasi web atau desktop, serta dukungan yang luas untuk bahasa pemrograman lainnya, seperti PostgreSQL dan JavaScript. Fleksibilitas JSON membuatnya sering digunakan dalam pertukaran data antara aplikasi web modern.
 
 ## 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 ### Membuat input form untuk menambahkan objek model pada app sebelumnya.
@@ -150,7 +144,15 @@ Sebelumnya, saya telah membuat fungsi views dalam format HTML, namun terdapat be
           }
       
           return render(request, "main.html", context)
-agar client dapat melihat tampilan data dalam format XML, JSON, XML by ID, dan JSON by ID. Saya menambahkan 4 fungsi lainnya yakni, 
+saya menambahkan line
+
+          ...
+          item_count = len(items)
+          ....
+          'items': items,
+          'item_count' : item_count
+item_count --> bonus,  saya menambahkan items agar informasi ang disimpan mengenai item dapa diliha dari aplikasi CIrcleD.
+Agar client dapat melihat tampilan data dalam format XML, JSON, XML by ID, dan JSON by ID. Saya menambahkan 4 fungsi lainnya yakni, 
 
     def show_xml(request):
         data = Item.objects.all()
@@ -169,7 +171,7 @@ agar client dapat melihat tampilan data dalam format XML, JSON, XML by ID, dan J
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 Fungsi show_xml dan show_json digunakan untuk mengambil semua data Item dari database dan mengirimkannya kembali sebagai respons dalam format XML ataupun JSON. Sedangkan, fungsi show_xml_by_id dan show_json_by_id digunakan untuk mengambil data Item berdasarkan ID yang diberikan dalam permintaan saja, kemudian mengirimkannya kembali dalam format XML atau JSON. 
 ### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
-Terakhir, ketika url tertentu terakses maka akan memanggil fungsi view yang bersesuaian agar flow aplikasi sesuai dengan permintaan client. Dengan begitu, saya perlu menambahkan 4 path baru pada berkas `urls.py` yakni,
+Terakhir, ketika url tertentu diakses pengguna, maka program akan memanggil fungsi view yang bersesuaian agar flow aplikasi sesuai dengan permintaan client. Dengan begitu, saya perlu menambahkan 4 path baru pada berkas `urls.py` yakni,
 
           ...
           path('xml/', show_xml, name='show_xml'), 
@@ -177,6 +179,7 @@ Terakhir, ketika url tertentu terakses maka akan memanggil fungsi view yang bers
           path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
           path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
           ...
+maksud dari kode di atas adalah, misal ketika http://localhost:8000/xml/ diakses pengguna maka sesuai dengan pola pada baris perama di atas , maka komponen view yang menghandle permintaan tersebut adalah show_xml, sedangkan name di tujukan untuk memberikan nama rute tersebut tanpa harus mengingat pola URL-nya secara eksplisit.
 
 ## 5.  Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/4bc23d53-e1ab-4c7b-9aac-d3fbcb1df72a)
@@ -184,6 +187,16 @@ Terakhir, ketika url tertentu terakses maka akan memanggil fungsi view yang bers
 ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/b344c2d1-8597-4b35-87b3-97cb25574c32)
 ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/ed14fb65-cf95-4a71-bf2d-d370d423c8b9)
 ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/f56b6fc8-2563-4b88-9557-92b97cb98cfe)
+
+## BONUS
+Kamu akan mendapatkan nilai bonus pada penilaian tugas ini apabila kamu membuat fitur berikut.
+
+Menambahkan pesan "Kamu menyimpan X item pada aplikasi ini" (dengan X adalah jumlah data item yang tersimpan pada aplikasi) dan menampilkannya di atas tabel data. Kalimat pesan boleh dikustomisasi sesuai dengan tema aplikasi, namun harus memiliki makna yang sama.
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/2bd79a79-25d7-49d4-9e5e-f34892b4ea1c)
+kode yang ditambahkan
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/54585ff0-c1e4-4060-8d24-0b798a7154ca)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/b773bfb8-deb5-4a1f-b065-4e2fdf0415ce)
 
 # TUGAS 2                      
 ## 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
