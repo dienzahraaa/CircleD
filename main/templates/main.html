@@ -28,6 +28,24 @@
                 <td>{{item.price}}</td>
                 <td>{{item.amount}}</td>
                 <td>{{item.description}}</td>
+                <td>
+                    <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Increase</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Decrease</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'main:remove_item' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

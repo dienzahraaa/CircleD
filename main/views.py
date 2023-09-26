@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from main.forms import ProductForm
 from django.urls import reverse
@@ -89,3 +89,20 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def increase_item_amount(request, id):
+    item = get_object_or_404(Item, pk=id)
+    item.amount += 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrease_item_amount(request, id):
+    item = get_object_or_404(Item, pk=id)
+    item.amount -= 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def remove_item(request, id):
+    item = get_object_or_404(Item, pk=id)
+    item.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
