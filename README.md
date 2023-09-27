@@ -38,7 +38,7 @@ Untuk dapat mengimplementasikan ketiganya saya membuat fungsi dan formnya. Sebel
                 return redirect('main:login')
         context = {'form':form}
         return render(request, 'register.html', context)
-Penjelasan kode(register) : Saya mengimport beberapa komponen dari Django yang diperlukan untuk register. Dalam fungsi register, saya membuat formulir untuk register. Form digunakan untuk mengumpulkan data yang diperlukan dari user, dengan UserCreationForm, pengolahan data inputan user menjadi lebiih mudah. Di dalam fungsi ini juga, ditambahkan if condition. Program memeriksa jika permintaan yang diterima adalah metode "POST" (yaitu, ketika pengguna mengirimkan data pendaftaran), maka kita mengambil data yang dikirim oleh pengguna dan memvalidasinya dengan formulir. Jika form falid, maka informasi akan disimpan dan menampilkan message success. Setelah berhasil menjalankan fungsi register, halaman web akan redirect ke halaman main:login.
+Penjelasan kode(register) : Saya mengimport beberapa komponen dari Django yang diperlukan untuk register. Dalam fungsi register, saya membuat formulir untuk register. Form digunakan untuk mengumpulkan data yang diperlukan dari user, dengan UserCreationForm sehingga pengolahan data inputan user menjadi lebih mudah. Di dalam fungsi ini juga, ditambahkan if condition. Program memeriksa jika permintaan yang diterima adalah metode "POST" (yaitu, ketika pengguna mengirimkan data pendaftaran), maka kita mengambil data yang dikirim oleh pengguna dan memvalidasinya dengan formulir. Jika form falid, maka informasi akan disimpan dan menampilkan message success. Setelah berhasil menjalankan fungsi register, halaman web akan redirect ke halaman main:login.
 
     from django.contrib.auth import authenticate, login
     def login_user(request):
@@ -62,7 +62,7 @@ Ketika sebuah permintaan POST diterima, kode ini mengambil nama pengguna (userna
         return redirect('main:login')
 Penjelasan kode(logout) : Saat fungsi ini dipanggil, pengguna saat ini akan keluar dari sesi mereka. Ini dilakukan dengan menggunakan fungsi logout() yang disediakan oleh Django. Setelah keluar, pengguna diarahkan kembali ke halaman login (dalam hal ini, 'main:login').
 
-Saya juga perlu menambahkan 2 berkas HTML dan memodifikasi isi berkas `main.html`
+Saya juga menambahkan 2 berkas HTML dan memodifikasi isi berkas `main.html`
 berkas html baru adalah register.html yang berisi
     
     {% extends 'base.html' %}
@@ -99,7 +99,7 @@ berkas html baru adalah register.html yang berisi
     </div>  
     
     {% endblock content %}
-berkas ini digunakan untuk halaman pendaftaran dalam aplikasi Django. Template ini mendefinisikan blok konten utama di mana formulir pendaftaran, termasuk token CSRF, ditampilkan dalam bentuk tabel. Pengguna dapat mengisi formulir dan mengirimkannya. Jika ada pesan kesalahan, pesan tersebut akan ditampilkan dalam bentuk daftar.      
+berkas ini digunakan untuk halaman pendaftaran dalam aplikasi Django. Template ini mendefinisikan blok konten utama di mana formulir pendaftaran, termasuk token CSRF, ditampilkan dalam bentuk tabel. Pengguna dapat mengisi formulir dan mengirimkannya. Jika ada kesalahan, maka akan ditampilkan pesan gagal.      
 selain berkas register.html, perlu ditambahkan pula berkas login.html yang berisi  
     
     {% extends 'base.html' %}
@@ -148,7 +148,8 @@ selain berkas register.html, perlu ditambahkan pula berkas login.html yang beris
     
     {% endblock content %}
 
-berkas  bertujuan untuk membuat halaman login dalam aplikasi Django. Halaman ini memungkinkan pengguna untuk memasukkan kredensial mereka (nama pengguna dan kata sandi) untuk masuk ke dalam aplikasi. Berkas ini diperlukan karena ini adalah antarmuka yang diperlihatkan kepada pengguna untuk proses otentikasi, yang penting untuk mengamankan akses ke aplikasi dan memberikan pengguna akses ke fitur-fitur terbatas berdasarkan hak akses mereka
+berkas  bertujuan untuk membuat halaman login dalam aplikasi Django. Halaman ini memungkinkan pengguna untuk memasukkan kredensial mereka (nama pengguna dan kata sandi) untuk masuk ke dalam aplikasi. Berkas ini diperlukan karena ini adalah interface yang diperlihatkan kepada pengguna untuk proses otentikasi, yang penting untuk mengamankan akses ke aplikasi dan memberikan pengguna akses ke fitur-fitur terbatas berdasarkan hak akses mereka.
+
 Serta memodifikasi berkas main.html untuk menambahkan button ke halaman main,
       
       ...
@@ -169,8 +170,7 @@ Selain `views.py` saya juga perlu mengubah `urls.py` yakni
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     ]
-Penjelasan ; Kode ini menghubungkan tiga URL dalam aplikasi Django dengan fungsi tampilan yang sesuai. URL '/register/' diarahkan ke fungsi pendaftaran, URL '/login/' diarahkan ke fungsi login, dan URL '/logout/' diarahkan ke fungsi logout. Ini memungkinkan pengguna mengakses halaman pendaftaran, masuk, dan keluar dengan mudah sesuai dengan permintaan mereka.    
-Dengan begitu user dapat melakukan register, login, dan logout di web CircleD
+Penjelasan ; Kode ini menghubungkan tiga URL dalam aplikasi Django dengan fungsi tampilan yang sesuai. URL '/register/' diarahkan ke fungsi pendaftaran, URL '/login/' diarahkan ke fungsi login, dan URL '/logout/' diarahkan ke fungsi logout. Dengan begitu user dapat melakukan register, login, dan logout di web CircleD sesuai dengan permintaan mereka.
 
 #### Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
 Untuk membuat akun di web CircleD, user dapat melakukan register terlebih dahulu. pertama, user akan ditampilkan dengan halaman login   
@@ -204,6 +204,13 @@ dalam berkas models.py
 
 dalam berkas views.py
 
+     def show_main(request):
+        items = Item.objects.filter(user=request.user)
+
+        context = {
+            'name': request.user.username,
+        ...
+        
      def create_product(request):
          form = ProductForm(request.POST or None)
 
@@ -213,18 +220,12 @@ dalam berkas views.py
              product.save()
              return HttpResponseRedirect(reverse('main:show_main'))
          ...
-
-    def show_main(request):
-        products = Product.objects.filter(user=request.user)
-
-        context = {
-            'name': request.user.username,
-        ...
+    
 Penjelasan :
-Kode diatas bertujuan untuk mengaitkan item yang dibuat dalam aplikasi dengan pemilik(user) yang terotentikasi. Pertama, dalam berkas `models.py`, kita menambahkan sebuah relasi menggunakan `ForeignKey` yang menghubungkan setiap produk dengan pengguna (`User`) yang membuatnya. Ini memungkinkan setiap produk memiliki pemilik yang terkait. Kemudian, dalam berkas `views.py`, dalam fungsi `create_product`, ketika produk baru dibuat melalui formulir, program mengaitkan produk tersebut dengan pengguna yang sedang masuk dengan cara `product.user = request.user`. Ini memastikan bahwa produk yang baru dibuat dikaitkan dengan pengguna yang membuatnya. Selanjutnya, dalam fungsi `show_main`, kita mengambil semua produk yang terkait dengan pengguna yang sedang masuk dengan menggunakan `Product.objects.filter(user=request.user)`. Ini memungkinkan pengguna hanya melihat produk yang mereka buat. Dengan begitu, program menghubungkan produk dengan pemiliknya dan memastikan bahwa setiap pengguna hanya melihat produk yang mereka buat.
+Kode diatas bertujuan untuk mengaitkan item yang dibuat dalam aplikasi dengan pemilik(user) yang terotentikasi. Pertama, dalam berkas models.py, kita menambahkan sebuah relasi menggunakan ForeignKey yang menghubungkan setiap produk dengan pengguna (User) yang membuatnya. Ini memungkinkan setiap produk memiliki pemilik yang terkait. Kemudian, dalam berkas views.py, dalam fungsi create_product, ketika produk baru dibuat melalui formulir, program mengaitkan produk tersebut dengan pengguna yang sedang masuk dengan cara product.user = request.user. Ini memastikan bahwa produk yang baru dibuat dikaitkan dengan pengguna yang membuatnya. Selanjutnya, dalam fungsi show_main, kita mengambil semua produk yang terkait dengan pengguna yang sedang masuk dengan menggunakan Item.objects.filter(user=request.user). Ini memungkinkan pengguna hanya melihat produk yang mereka buat. Dengan begitu, program menghubungkan produk dengan pemiliknya dan memastikan bahwa setiap pengguna hanya melihat produk yang mereka buat.
 
 #### Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
-Untuk penggunaan cookies, perlu dimodifikasi berkas views.py akni dengan menambahkan kode di bawah
+Untuk penggunaan cookies, perlu dimodifikasi berkas views.py yakni dengan menambahkan kode di bawah
 
     import datetime
     from django.http import HttpResponseRedirect
@@ -243,9 +244,7 @@ Untuk penggunaan cookies, perlu dimodifikasi berkas views.py akni dengan menamba
         'products': products,
         'last_login': request.COOKIES['last_login'],
     }
-Pertama, kode ini mengimpor modul yang diperlukan dan menambahkannya ke bagian atas berkas views.py.
-
-Kemudian, dalam fungsi login_user, setelah pengguna berhasil login (sesuai dengan kondisi if user is not None), kode membuat objek respons dengan HttpResponseRedirect yang mengarahkan pengguna ke halaman utama (main:show_main). Selain itu, kode ini mengatur cookie bernama "last_login" dengan nilai timestamp saat ini menggunakan response.set_cookie. Ini memungkinkan waktu terakhir login pengguna untuk disimpan dalam cookie "last_login" dan akan ditampilkan di halaman utama aplikasi. Penggunaan cookie ini membantu melacak aktivitas login pengguna. Sedangkan,` request.user.username` untuk menampilkan informasi username pengguna yang sedang logged in. Agar last login dapat dilihat pengguna di halaman main, mkaa perlu ditambahkan line berikut di berkas main.hml
+Pertama, kode ini mengimpor modul yang diperlukan dan menambahkannya ke bagian atas berkas views.py. Kemudian, dalam fungsi login_user, setelah pengguna berhasil login (sesuai dengan kondisi if user is not None), kode membuat objek respons dengan HttpResponseRedirect yang mengarahkan pengguna ke halaman utama (main:show_main). Selain itu, kode ini mengatur cookie bernama "last_login" dengan nilai timestamp saat ini menggunakan response.set_cookie. Ini memungkinkan waktu terakhir login pengguna untuk disimpan dalam cookie "last_login" dan akan ditampilkan di halaman utama aplikasi. Penggunaan cookie ini membantu melacak aktivitas login pengguna. Sedangkan, request.user.username untuk menampilkan informasi username pengguna yang sedang logged in. Agar last login dapat dilihat pengguna di halaman main, mkaa perlu ditambahkan line berikut di berkas main.hml
 
     ...
     <h5>Sesi terakhir login: {{ last_login }}</h5>
