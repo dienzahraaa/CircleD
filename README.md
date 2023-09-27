@@ -62,14 +62,17 @@ Penjelasan kode(register) : Saya mengimport beberapa komponen dari Django yang d
         context = {}
         return render(request, 'login.html', context)
 Penjelasan kode(login) : 
+Ketika sebuah permintaan POST diterima, kode ini mengambil nama pengguna (username) dan kata sandi (password) yang dikirimkan oleh pengguna melalui formulir login. Selanjutnya, menggunakan fungsi authenticate(), kode memeriksa kecocokan antara data yang dimasukkan dengan akun pengguna yang ada dalam sistem. Jika otentikasi berhasil, pengguna dianggap telah masuk dan diarahkan ke halaman utama. Namun, jika otentikasi gagal, kode menampilkan pesan kesalahan yang memberi tahu pengguna bahwa nama pengguna atau kata sandi yang dimasukkan salah, dan pengguna tetap berada di halaman login.
 
     from django.contrib.auth import logout
     def logout_user(request):
         logout(request)                                                    
         return redirect('main:login')
-Penjelasan kode(logout) : 
-Saya juga perlu menambahkan 2 berkas HTML dan memodifikasi isi berkain `main.html`
+Penjelasan kode(logout) : Saat fungsi ini dipanggil, pengguna saat ini akan keluar dari sesi mereka. Ini dilakukan dengan menggunakan fungsi logout() yang disediakan oleh Django. Setelah keluar, pengguna diarahkan kembali ke halaman login (dalam hal ini, 'main:login').
+
+Saya juga perlu menambahkan 2 berkas HTML dan memodifikasi isi berkas `main.html`
 berkas html baru adalah register.html yang berisi
+    
     {% extends 'base.html' %}
     
     {% block meta %}
@@ -104,7 +107,8 @@ berkas html baru adalah register.html yang berisi
     </div>  
     
     {% endblock content %}
-berkas login.html yang berisi 
+berkas ini digunakan untuk halaman pendaftaran dalam aplikasi Django. Template ini mendefinisikan blok konten utama di mana formulir pendaftaran, termasuk token CSRF, ditampilkan dalam bentuk tabel. Pengguna dapat mengisi formulir dan mengirimkannya. Jika ada pesan kesalahan, pesan tersebut akan ditampilkan dalam bentuk daftar.      
+selain berkas register.html, perlu ditambahkan pula berkas login.html yang berisi  
     
     {% extends 'base.html' %}
     
@@ -152,8 +156,8 @@ berkas login.html yang berisi
     
     {% endblock content %}
 
-
-Serta memodifikasi berkas main.html 
+berkas  bertujuan untuk membuat halaman login dalam aplikasi Django. Halaman ini memungkinkan pengguna untuk memasukkan kredensial mereka (nama pengguna dan kata sandi) untuk masuk ke dalam aplikasi. Berkas ini diperlukan karena ini adalah antarmuka yang diperlihatkan kepada pengguna untuk proses otentikasi, yang penting untuk mengamankan akses ke aplikasi dan memberikan pengguna akses ke fitur-fitur terbatas berdasarkan hak akses mereka
+Serta memodifikasi berkas main.html untuk menambahkan button ke halaman main,
       
       ...
       <a href="{% url 'main:logout' %}">
@@ -173,11 +177,108 @@ Selain `views.py` saya juga perlu mengubah `urls.py` yakni
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     ]
+Penjelasan ; Kode ini menghubungkan tiga URL dalam aplikasi Django dengan fungsi tampilan yang sesuai. URL '/register/' diarahkan ke fungsi pendaftaran, URL '/login/' diarahkan ke fungsi login, dan URL '/logout/' diarahkan ke fungsi logout. Ini memungkinkan pengguna mengakses halaman pendaftaran, masuk, dan keluar dengan mudah sesuai dengan permintaan mereka.    
+Dengan begitu user dapat melakukan register, login, dan logout di web CircleD
+
 #### Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+Untuk membuat akun di web CircleD, user dapat melakukan register terlebih dahulu. pertama, user akan ditampilkan dengan halaman login   
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/fd2aeb8b-9a8a-4b9b-b12d-f7788dcd5842)
+
+Pada bagian bawah, tertera `register now`, ketika user mengklik maka tampilan web akan berubah sebagai berikut
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/0f423b17-d38f-45f8-8d61-3198ebcf664c)
+
+Setelah user berhasil register, user dapat kembali ke halaman login sebelum dan memasukkan username serta password valid. Setelah username tervalidasi , user dapat mengakses fitur dari CircleD dan menambahkan item di CircleD dengan button  yang telah dibuat sebelumya.
+
+Sehingga, tampilan akhir setelah user membuat dua akun berbeda dengan masing masing 3 item berbeda,
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/8ccc1460-658b-4034-936e-a58d8000818a)
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/ff15f791-23bb-4a22-a938-c8f0d71bd5ea)
 
 #### Menghubungkan model Item dengan User.
+Agar produk dibuat user terhubung dengan pemilik(User) yang terotorisasi, perlu ditambahkan beberapa kode di bawah di beberapa berkas.  
+
+dalam berkas models.py
+
+    ...
+    from django.contrib.auth.models import User
+    ...
+
+    class Product(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        ...
+
+dalam berkas views.py
+
+     def create_product(request):
+         form = ProductForm(request.POST or None)
+
+         if form.is_valid() and request.method == "POST":
+             product = form.save(commit=False)
+             product.user = request.user
+             product.save()
+             return HttpResponseRedirect(reverse('main:show_main'))
+         ...
+
+    def show_main(request):
+        products = Product.objects.filter(user=request.user)
+
+        context = {
+            'name': request.user.username,
+        ...
+Penjelasan :
+Kode diatas bertujuan untuk mengaitkan item yang dibuat dalam aplikasi dengan pemilik(user) yang terotentikasi. Pertama, dalam berkas `models.py`, kita menambahkan sebuah relasi menggunakan `ForeignKey` yang menghubungkan setiap produk dengan pengguna (`User`) yang membuatnya. Ini memungkinkan setiap produk memiliki pemilik yang terkait. Kemudian, dalam berkas `views.py`, dalam fungsi `create_product`, ketika produk baru dibuat melalui formulir, program mengaitkan produk tersebut dengan pengguna yang sedang masuk dengan cara `product.user = request.user`. Ini memastikan bahwa produk yang baru dibuat dikaitkan dengan pengguna yang membuatnya. Selanjutnya, dalam fungsi `show_main`, kita mengambil semua produk yang terkait dengan pengguna yang sedang masuk dengan menggunakan `Product.objects.filter(user=request.user)`. Ini memungkinkan pengguna hanya melihat produk yang mereka buat. Dengan begitu, program menghubungkan produk dengan pemiliknya dan memastikan bahwa setiap pengguna hanya melihat produk yang mereka buat.
 
 #### Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+Untuk penggunaan cookies, perlu dimodifikasi berkas views.py akni dengan menambahkan kode di bawah
+
+    import datetime
+    from django.http import HttpResponseRedirect
+    from django.urls import reverse
+
+    ...
+    if user is not None:
+        login(request, user)
+        response = HttpResponseRedirect(reverse("main:show_main")) 
+        response.set_cookie('last_login', str(datetime.datetime.now()))
+        return response
+    ...
+    context = {
+        'name': request.user.username,
+        'class': 'PBP A',
+        'products': products,
+        'last_login': request.COOKIES['last_login'],
+    }
+Pertama, kode ini mengimpor modul yang diperlukan dan menambahkannya ke bagian atas berkas views.py.
+
+Kemudian, dalam fungsi login_user, setelah pengguna berhasil login (sesuai dengan kondisi if user is not None), kode membuat objek respons dengan HttpResponseRedirect yang mengarahkan pengguna ke halaman utama (main:show_main). Selain itu, kode ini mengatur cookie bernama "last_login" dengan nilai timestamp saat ini menggunakan response.set_cookie. Ini memungkinkan waktu terakhir login pengguna untuk disimpan dalam cookie "last_login" dan akan ditampilkan di halaman utama aplikasi. Penggunaan cookie ini membantu melacak aktivitas login pengguna. Sedangkan,` request.user.username` untuk menampilkan informasi username pengguna yang sedang logged in. Agar last login dapat dilihat pengguna di halaman main, mkaa perlu ditambahkan line berikut di berkas main.hml
+
+    ...
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+    ...
+ ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/aa60d3b3-8619-454b-9997-e31e5598d4f6)
+   
+## BONUS
+- untuk mambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu serta mambahkan tombol dan fungsi untuk menghapus suatu objek dari inventori, saya menambahkan beberapa fungsi di bawah
+dalam berkas views.py:
+
+ ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/56b816b8-e5d1-4f13-9dcb-df1febb2cab0)
+
+ dan mengimpor ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/5d70fdbb-6708-4b0c-aac4-96db04e3b638)
+
+dalam urlpatterns ditambahkan baris berikut, dan menambahkan impor yang bersesuaiann
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/4cd02876-5b6e-4dda-8702-357301645bc4)
+
+ Agar button untuk increment, decrement, dan delete item tampil pada halaman main user, perlu untuk ditambahkan kode berikut di berkas main.html
+ 
+ ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/4ff8d10b-54b4-4b17-a2dc-614ff3817db3)
+
+ Dengan tampilan akhir tabel item pada halaman main sebagai berikut
+
+ ![image](https://github.com/dienzahraaa/CircleD/assets/124993970/9a814679-b0f5-4ec2-8974-238dd5a6ae8f)
 
 
 # TUGAS 3
