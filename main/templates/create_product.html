@@ -1,19 +1,85 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Add New Product</title>
+{% endblock meta %}
 
 {% block content %}
-<h1>Add New Product</h1>
+<style>
+    /* CSS untuk mempercantik tampilan halaman Create Product */
+    body {
+        background-color: #f4bbd8; /* Warna pink */
+    }
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+    .card {
+        background-color: #fff; /* Warna latar belakang kartu (putih) */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
 
-{% endblock %}
+    .card-header {
+        background-color: #c06996; /* Warna pink */
+        color: #fff; /* Warna teks putih */
+    }
+
+    .btn-primary {
+        background-color: #c06996 !important; /* Warna pink untuk tombol */
+        border-color: #c06996 !important;
+    }
+
+    .btn-primary:hover {
+        background-color: #661e43 !important; /* Warna pink saat dihover */
+        border-color: #661e43 !important;
+    }
+
+    /* Perbaikan agar field input berada di dalam card */
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-body table {
+        width: 100%;
+    }
+
+    .card-body input[type="text"],
+    .card-body input[type="number"],
+    .card-body textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">Add New Product</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <table>
+                            {{ form.as_table }}
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Add Product" class="btn btn-primary">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -17,7 +17,7 @@ from django.contrib.auth import logout
 
 @login_required(login_url='/login')
 def show_main(request):
-    items = Item.objects.all()
+    items = Item.objects.filter(user=request.user)
     item_count = len(items)
     context = {
         'name': request.user.username,

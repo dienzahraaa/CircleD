@@ -1,68 +1,194 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>CircleD Page</h1>
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+<style>
+    body {
+        background-image: url('https://wallpapercave.com/wp/wp3152211.jpg'); 
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-attachment: fixed; 
+        height: 100vh;
+    }
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 35px;
+    }
 
-    <h5>Kamu menyimpan {{ item_count }} item pada aplikasi ini</h5>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Description</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.category}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>
-                    <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Increase</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Decrease</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="{% url 'main:remove_item' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Remove</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-    
-    <br />
-    
-    <a href="{% url 'main:create_product' %}">
-        <button>
+    .informasi {
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+
+    .btn-outline-info:hover {
+        outline: #420f29;
+        background-color: #b479a2;
+        color: #fff;
+    }
+
+    h5 {
+        color: #570932;
+        font-family: Arial, sans-serif;
+        font-size: 23px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    h5 span {
+        color: #570932;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        font-weight: medium;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 1000px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .card-header {
+        background-color: #c06996;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .card-body {
+        background-color: rgba(255, 255, 255, 2);
+        padding: 20px;
+    }
+
+    .card-footer {
+        text-align: center;
+        padding: 10px;
+    }
+
+    table tr {
+        background-color: #fdd3d3; 
+        border: 2px solid #000000;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #000000; /* Warna border pink */
+        background-color: #570932;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border: 2px solid #000000;
+    }
+
+   
+    table tr:last-child {
+        background-color: #420f29; /* Warna pink yang berbeda */
+        border: 2px solid #000000;
+        color: #fff;
+    }
+</style>
+<body>
+
+    <div >
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c06996;">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <h1>
+                            CircleD
+                            <small class="fs-6 fst-italic">by dien</small>
+                        </h1>
+                    </div>
+                    <div class="col-auto">
+                        <form class="ml-auto">
+                            <a href="{% url 'main:logout' %}">
+                                <button class="btn btn-danger" type="button">Log out</button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+<div class="card">
+    <div class="card-header">
+        <h1>Daftar Produk</h1>
+    </div>
+    <div class="card-body">
+        <div class="informasi">
+            <h5>Nama: <span>{{name}}</span></h5>
+            <h5>Kelas: <span>{{class}}</span></h5>
+            <h5>Kamu menyimpan <span class="badge bg-secondary">{{ item_count }}</span> item pada aplikasi ini</h5>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.description}}</td>
+                    <td>
+                        <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'main:remove_item' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <h6>Sesi terakhir login: {{ last_login }}</h6>
+        <a href="{% url 'main:create_product' %}" class="btn btn-outline-info" style="color: #FFFFFF; outline-color: #7d2763; border-color: #7d2763; background-color: #7d2763;">
             Add New Product
-        </button>
-    </a>
-    
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+        </a>
 
-    <a href="{% url 'main:logout' %}">
-        <button>
+        <a href="{% url 'main:logout' %}" class="btn btn-danger">
             Logout
-        </button>
-    </a>
+        </a>
+    </div>
+</div>
+</body>
 {% endblock content %}
