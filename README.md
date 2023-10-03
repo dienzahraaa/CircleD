@@ -5,6 +5,158 @@ NPM : 2206828033
 Kelas : PBP-F
 
 
+# TUGAS 5
+## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+1. Elemen selector
+Elemen selektor memiliki beberapa manfaat dalam pemrograman CSS. Pertama, elemen selektor berguna ketika ingin mengubah gaya pada semua elemen yang memiliki tag HTML yang sama. Misalnya, kita dapat dengan mudah mengatur tampilan semua elemen `<h1>` atau semua elemen `<p>` dalam halaman web  dengan hanya menggunakan elemen selektor yang sesuai. Selain itu, elemen selektor membantu menjaga konsistensi dalam tampilan halaman web. Dengan menerapkan aturan gaya yang sama pada semua elemen yang memiliki tag yang sama,  dapat dipastikan bahwa elemen-elemen tersebut memiliki tampilan yang seragam di seluruh halaman.Selain itu, elemen selektor dapat digunakan ketika kita memiliki elemen-elemen dengan tag yang sama, tetapi berada dalam konteks yang berbeda di halaman web. Misalnya, jika memiliki beberapa paragraf <p> yang berada dalam <div> yang berbeda, kita masih dapat menggunakan elemen selektor untuk mengatur tampilan mereka secara spesifik dalam konteks masing-masing <div>. Sehingga, elemen selektor sesuai digunakan ketika kita perlu mengontrol tampilan elemen-elemen dasar dalam halaman web dan memastikan bahwa tampilan tersebut konsisten di seluruh situs web, bahkan dalam konteks yang berbeda.
+
+2. Elemen id
+ID selector berguna ketika ingin mengubah tampilan elemen yang benar-benar unik dalam halaman web, karena ID harus bersifat unik dalam satu halaman web, sehingga ID selector memungkinkan untuk dengan mudah mengidentifikasi dan menerapkan gaya pada elemen-elemen yang hanya muncul sekali atau memiliki atribut ID yang benar-benar unik. Selain itu, ID selector juga berguna ketika memerlukan selektor yang lebih spesifik. Dalam situasi di mana terdapat beberapa elemen dengan tag HTML yang sama (misalnya, beberapa elemen `<div>`), ID selector memungkinkan untuk memilih dengan presisi elemen tertentu yang diinginkan. Dengan cara ini, dapat mengubah tampilan atau perilaku elemen tersebut tanpa memengaruhi elemen-elemen serupa yang ada di halaman.
+
+3. Selektor Class
+Class Selector memiliki beberapa kegunaan yang signifikan. Class Selector sangat berguna ketika ingin mengelompokkan elemen dengan gaya yang sama. Misalnya, jika terdapat beberapa elemen dengan karakteristik atau gaya yang serupa, seperti menggolongkan beberapa kotak konten dalam satu div, Class Selector memungkinkan untuk dengan mudah mengidentifikasi dan menerapkan gaya yang serupa pada semua elemen ini dengan menggunakan kelas yang sama. Selanjutnya, Class Selector cocok ketika ingin mengaplikasikan gaya yang sama pada lebih dari satu elemen dalam halaman web. Hal ini menghindari pengulangan aturan gaya yang identik dan memungkinkan untuk mengatur gaya dengan lebih efisien. Dengan kata lain, dapat dengan mudah menerapkan gaya yang konsisten pada berbagai elemen tanpa harus menulis ulang aturan gaya yang sama. Selain itu, Class Selector memberikan fleksibilitas yang lebih besar dalam pengelompokan dan penggunaan gaya. Dapat memberikan kelas tertentu kepada beberapa elemen yang mungkin memiliki karakteristik berbeda dan hanya menerapkan gaya pada elemen-elemen tersebut sesuai dengan kebutuhan.
+
+## Jelaskan HTML5 Tag yang kamu ketahui.
+`<html>`: Tag ini digunakan untuk mendefinisikan awal dan akhir dari dokumen HTML.
+`<head>`: Tag ini berisi informasi meta tentang halaman web seperti judul, karakter set, dan referensi ke file CSS atau JavaScript.
+`<title>`: Digunakan dalam elemen <head> untuk menentukan judul halaman web yang akan ditampilkan di bilah judul browser.
+`<meta> ` Ini digunakan untuk menentukan metainformasi tentang halaman web, seperti deskripsi, kata kunci, atau karakter set yang digunakan.
+`<link>` : Digunakan untuk menghubungkan halaman web dengan file eksternal, seperti file CSS atau ikon favicon.
+`<style>`: Ini digunakan untuk menulis kode CSS dalam halaman HTML atau sebagai bagian dari halaman HTML.
+`<body>`: Tag ini mengelilingi konten utama halaman web, termasuk teks, gambar, dan elemen-elemen lainnya yang akan ditampilkan kepada pengguna.
+
+`<h1>, <h2>, <h3>, <h4>, <h5>, <h6>`: Digunakan untuk membuat judul atau heading dengan tingkat kepentingan yang berbeda, dimulai dari `<h1>` yang paling penting hingga `<h6>` yang paling rendah.
+
+`<p>`: Digunakan untuk menandai paragraf teks.
+
+`<img>`: Digunakan untuk menampilkan gambar di halaman web.
+
+`<div>`: Ini adalah elemen blok yang digunakan untuk mengelompokkan dan memformat konten dalam kotak terpisah.
+
+`<span>`: Ini adalah elemen inline yang digunakan untuk memformat atau mengubah gaya teks tanpa mengubah struktur dokumen.
+
+`<form>`: Digunakan untuk membuat formulir interaktif yang dapat digunakan oleh pengguna untuk mengirim data.
+
+`<input>`: Digunakan di dalam elemen <form> untuk membuat elemen masukan seperti teks, tombol radio, dan kotak centang.
+
+`<textarea>`: Ini digunakan untuk membuat area teks yang lebih besar, seperti kotak komentar atau masukan teks panjang.
+
+`<video>` dan `<audio>`: Digunakan untuk menambahkan elemen multimedia seperti video dan audio ke halaman web.
+
+
+`<footer>`: Digunakan untuk menentukan informasi akhir atau penutupan dari sebuah halaman web atau bagian tertentu.
+
+## Jelaskan perbedaan antara margin dan padding.
+Margin dan padding memiliki perbedaan. Margin diterapkan di luar elemen dan berfungsi untuk mengontrol jarak antara elemen dengan elemen lain di sekitarnya, dengan menciptakan ruang tambahan di sekitar elemen tersebut, yang dapat memengaruhi tata letak keseluruhan halaman web atau elemen-elemen lain yang berdekatan. Margin tidak memengaruhi dimensi fisik elemen itu sendiri, sehingga jika kita memiliki elemen dengan lebar 100px dan memberinya margin 20px, lebar elemen tersebut tetap 100px. Sedangkan, padding diterapkan di dalam elemen, tepat di antara konten elemen dan batas (border) elemen tersebut. Fungsi dari padding adalah mengontrol jarak antara konten elemen dan batasnya. Dengan kata lain, padding memengaruhi tampilan elemen dengan menambahkan ruang di sekitar konten elemen. Berbeda dengan Margin, penggunaan padding akan memengaruhi dimensi fisik elemen tersebut. Sebagai contoh, elemen lebar 100px padding sebesar 20px, maka lebar efektif elemen tersebut akan menjadi 140px (100px konten + 20px padding di sisi kiri + 20px padding di sisi kanan). 
+
+
+## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+Tailwind CSS adalah framework CSS yang mengandalkan kelas-kelas utilitas yang fleksibel, sehingga memungkinkan developer untuk membangun tampilan dengan menambahkan kelas-kelas langsung ke elemen HTML. Tailwind memungkinkan tingkat kontrol yang tinggi dan membutuhkan penulisan lebih banyak kode HTML.
+Sedangkan Bootstrap, adalah framework CSS yang menyediakan komponen-komponen siap pakai dan kelas-kelas yang telah didefinisikan sebelumnya, yang mempercepat pengembangan dengan menyediakan komponen seperti navbar, kartu, dan lainnya. Bootstrap lebih cocok untuk pengembangan cepat dan menghasilkan tampilan yang konsisten di seluruh proyek. Singkatnya, Tailwind CSS memberikan kontrol yang lebih besar dan fleksibilitas dalam pengaturan tampilan dengan kelas-kelas utilitas, sementara Bootstrap menyediakan komponen-komponen siap pakai untuk pengembangan yang lebih cepat. Tailwind CSS cocok digunakan dalam situasi di mana memerlukan fleksibilitas dan adaptabilitas yang tinggi dalam pengembangan tampilan. Dengan Tailwind CSS, dapat dengan mudah menggabungkan kelas-kelas utilitas yang telah didefinisikan untuk mencapai tampilan yang sesuai dengan kebutuhan. Hal ini memungkinkan memiliki kendali yang lebih besar atas desain tampilan.
+Selain itu, Tailwind CSS juga cenderung menghasilkan file CSS yang lebih kecil dibandingkan dengan Bootstrap. Ini karena Tailwind hanya memuat kelas-kelas yang benar-Framework ini juga lebih cocok bagi mereka yang terbiasa dengan pengembangan berbasis kelas utilitas, di mana gaya dan tampilan dikontrol dengan detail melalui penggunaan kelas-kelas utilitas yang spesifik. Sedangkan, Bootstrap lebih sesuai digunakan ketika ingin mengembangkan dengan cepat, terutama jika memiliki keterbatasan waktu atau pengalaman dalam pengembangan web. Bootstrap menyediakan komponen-komponen siap pakai yang dapat digunakan langsung dalam proyek, sehingga memungkinkan untuk memulai dengan cepat tanpa perlu merancang ulang komponen tersebut. Selain itu, Bootstrap juga sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan sebelumnya, menjadikannya pilihan yang baik untuk proyek dengan tampilan yang seragam.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+Untuk kustomisasi halaman login register dan login, saya menggunakan cards, yakni dengan cara mengimplementasikan class selector (card)
+    
+           <div class="card">
+                <div class="card-header">
+                    ...
+                </div>
+                <div class="card-body">
+                   ...
+                </div>
+                <div class="card-footer text-center">
+                    ...
+                </div>
+            </div>
+
+Sehingga dari card tersebut terdapat 3 section yakni header, body, dan footer. Dengan penyesuaiin tampilannya, saya menggunakan Class tersebut sebagai selector dalam file CSS. Class selector dengan format .card, .card-body, dan .card-footer
+
+    <style>
+    ...
+
+    .card {
+        background-color: #fff; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .card-header {
+        background-color: #c06996; /* Warna pink */
+        color: #fff; /* Warna teks putih */
+    }
+
+    ...
+    </style>
+Dengan begitu tampilan pada card akan konsisten sesuai dengan classnya. Selain cards saya juga melakukan beberap apenyesuaian warna dan sebagainya pada elemen lainnya. seperti pada button saya mengubah warnanya dengan kode css sebagai berikut.
+    
+     .btn-primary {
+        background-color: #c06996 !important; /* Warna pink untuk tombol */
+        border-color: #c06996 !important;
+    }
+
+    .btn-primary:hover {
+        background-color: #661e43 !important; /* Warna pink saat dihover */
+        border-color: #661e43 !important;
+    }
+
+dan mengubah latar dari website dengan css
+
+    body {
+        background-image: url('https://wallpapercave.com/wp/wp3152211.jpg'); 
+        background-size: cover;
+        background-repeat: no-repeat; 
+        background-attachment: fixed; 
+        height: 100vh;
+    }
+Pada ketiga halaman tersebut saya mengimplementasikannya seperti yang di atas hana saja ada beberapa hal yang perlu diatur sesuai dengan keperluan tiap page website saya.
+
+### Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+agar halaman daftar inventori yang berupa tabel tersebut berwarna, saya menggunakan selector class sebagai berikut
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #000000; 
+        background-color: #570932;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border: 2px solid #000000;
+    }
+
+    table tr {
+        background-color: #fdd3d3; 
+        border: 2px solid #000000;
+    }
+   
+    table tr:last-child {
+        background-color: #420f29; 
+        border: 2px solid #000000;
+        color: #fff;
+    }
+
+dengan kode diata aku menyesuaikan tabel pada CircleD sesuai kemauan aku, seperti mengubah warna memberi border, padding dan sebagainya
+
+## BONUS
+Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.
+css:
+
+    table tr:last-child {
+        background-color: #420f29; 
+        border: 2px solid #000000;
+        color: #fff;
+    }
+
+penjelasan kode: mengubah tampilan baris terakhir dalam sebuah tabel, dengan memberikan latar belakang berwarna #420f29, batasan pinggir tebal 2px berwarna hitam (#000000), dan warna teks putih (#fff) untuk baris tersebut.
+
 # TUGAS 4
 ## 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
 UserCreationForm adalah salah satu formulir bawaan yang disediakan oleh Django. Formulir ini dirancang untuk keperluan pendaftaran pengguna dalam aplikasi web yang memerlukan sistem otentikasi dan manajemen pengguna. Penggunaan UserCreationForm dalam Django memiliki banyak kelebihan, seperti kemudahan penggunaan, kemampuan penyesuaian, dan fungsionalitas bawaan yang lengkap. UserCreationForm telah dirancang dengan baik untuk memvalidasi dan memproses data pendaftaran pengguna. Ini memungkinkan pengembang untuk dengan mudah mengimplementasikan proses pendaftaran pengguna yang aman dan efisien tanpa perlu menulis kode validasi yang rumit. Selain itu, UserCreationForm juga berintegrasi dengan baik dengan sistem otentikasi Django, yang memungkinkan pengguna untuk masuk ke aplikasi dengan mudah setelah mendaftar. Ini menghemat waktu dan upaya pengembang dalam mengelola otentikasi pengguna. Terakhir, UserCreationForm dapat disesuaikan sesuai kebutuhan. Pengembang dapat menambahkan kolom tambahan atau mengubah perilaku form sesuai dengan persyaratan aplikasi mereka. Hal ini memberikan fleksibilitas dalam mengelola proses pendaftaran pengguna. Namun, terdapat beberapa kekurangan dalam penggunaan UserCreationForm ini. Pertama, UserCreationForm biasanya memerlukan penyesuaian tambahan agar sesuai dengan kebutuhan aplikasi tertentu, yang bisa menjadi hal kompleks jika memiliki persyaratan kustom yang kompleks. Kedua, UserCreationForm biasanya dirancang untuk mengelola informasi dasar pengguna seperti username dan password, sehingga jika program perlu mengumpulkan data tambahan, pengembang perlu menambahkan kolom tambahan secara manual. Terakhir, dalam beberapa kasus, UserCreationForm mungkin tidak mengatasi masalah keamanan yang lebih canggih seperti serangan brute force atau perlindungan terhadap bot.
