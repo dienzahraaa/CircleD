@@ -8,21 +8,30 @@ Kelas : PBP-F
 # TUGAS 5
 ## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
 1. Elemen selector
-Elemen selektor memiliki beberapa manfaat dalam pemrograman CSS. Pertama, elemen selektor berguna ketika ingin mengubah gaya pada semua elemen yang memiliki tag HTML yang sama. Misalnya, kita dapat dengan mudah mengatur tampilan semua elemen `<h1>` atau semua elemen `<p>` dalam halaman web  dengan hanya menggunakan elemen selektor yang sesuai. Selain itu, elemen selektor membantu menjaga konsistensi dalam tampilan halaman web. Dengan menerapkan aturan gaya yang sama pada semua elemen yang memiliki tag yang sama,  dapat dipastikan bahwa elemen-elemen tersebut memiliki tampilan yang seragam di seluruh halaman.Selain itu, elemen selektor dapat digunakan ketika kita memiliki elemen-elemen dengan tag yang sama, tetapi berada dalam konteks yang berbeda di halaman web. Misalnya, jika memiliki beberapa paragraf <p> yang berada dalam <div> yang berbeda, kita masih dapat menggunakan elemen selektor untuk mengatur tampilan mereka secara spesifik dalam konteks masing-masing <div>. Sehingga, elemen selektor sesuai digunakan ketika kita perlu mengontrol tampilan elemen-elemen dasar dalam halaman web dan memastikan bahwa tampilan tersebut konsisten di seluruh situs web, bahkan dalam konteks yang berbeda.
+
+Elemen selektor memiliki beberapa manfaat dalam pemrograman CSS. Pertama, elemen selektor berguna ketika ingin mengubah gaya pada semua elemen yang memiliki tag HTML yang sama. Misalnya, kita dapat dengan mudah mengatur tampilan semua elemen `<h1>` atau semua elemen `<p>` dalam halaman web  dengan hanya menggunakan elemen selektor yang sesuai. Selain itu, elemen selektor membantu menjaga konsistensi dalam tampilan halaman web. Dengan menerapkan aturan gaya yang sama pada semua elemen yang memiliki tag yang sama,  dapat dipastikan bahwa elemen-elemen tersebut memiliki tampilan yang seragam di seluruh halaman.Selain itu, elemen selektor dapat digunakan ketika kita memiliki elemen-elemen dengan tag yang sama, tetapi berada dalam konteks yang berbeda di halaman web. Misalnya, jika memiliki beberapa paragraf `<p>` yang berada dalam `<div>` yang berbeda, kita masih dapat menggunakan elemen selektor untuk mengatur tampilan mereka secara spesifik dalam konteks masing-masing `<div>`. Sehingga, elemen selektor sesuai digunakan ketika kita perlu mengontrol tampilan elemen-elemen dasar dalam halaman web dan memastikan bahwa tampilan tersebut konsisten di seluruh situs web, bahkan dalam konteks yang berbeda.
 
 2. Elemen id
+
 ID selector berguna ketika ingin mengubah tampilan elemen yang benar-benar unik dalam halaman web, karena ID harus bersifat unik dalam satu halaman web, sehingga ID selector memungkinkan untuk dengan mudah mengidentifikasi dan menerapkan gaya pada elemen-elemen yang hanya muncul sekali atau memiliki atribut ID yang benar-benar unik. Selain itu, ID selector juga berguna ketika memerlukan selektor yang lebih spesifik. Dalam situasi di mana terdapat beberapa elemen dengan tag HTML yang sama (misalnya, beberapa elemen `<div>`), ID selector memungkinkan untuk memilih dengan presisi elemen tertentu yang diinginkan. Dengan cara ini, dapat mengubah tampilan atau perilaku elemen tersebut tanpa memengaruhi elemen-elemen serupa yang ada di halaman.
 
 3. Selektor Class
+
 Class Selector memiliki beberapa kegunaan yang signifikan. Class Selector sangat berguna ketika ingin mengelompokkan elemen dengan gaya yang sama. Misalnya, jika terdapat beberapa elemen dengan karakteristik atau gaya yang serupa, seperti menggolongkan beberapa kotak konten dalam satu div, Class Selector memungkinkan untuk dengan mudah mengidentifikasi dan menerapkan gaya yang serupa pada semua elemen ini dengan menggunakan kelas yang sama. Selanjutnya, Class Selector cocok ketika ingin mengaplikasikan gaya yang sama pada lebih dari satu elemen dalam halaman web. Hal ini menghindari pengulangan aturan gaya yang identik dan memungkinkan untuk mengatur gaya dengan lebih efisien. Dengan kata lain, dapat dengan mudah menerapkan gaya yang konsisten pada berbagai elemen tanpa harus menulis ulang aturan gaya yang sama. Selain itu, Class Selector memberikan fleksibilitas yang lebih besar dalam pengelompokan dan penggunaan gaya. Dapat memberikan kelas tertentu kepada beberapa elemen yang mungkin memiliki karakteristik berbeda dan hanya menerapkan gaya pada elemen-elemen tersebut sesuai dengan kebutuhan.
 
 ## Jelaskan HTML5 Tag yang kamu ketahui.
 `<html>`: Tag ini digunakan untuk mendefinisikan awal dan akhir dari dokumen HTML.
+
 `<head>`: Tag ini berisi informasi meta tentang halaman web seperti judul, karakter set, dan referensi ke file CSS atau JavaScript.
+
 `<title>`: Digunakan dalam elemen <head> untuk menentukan judul halaman web yang akan ditampilkan di bilah judul browser.
+
 `<meta> ` Ini digunakan untuk menentukan metainformasi tentang halaman web, seperti deskripsi, kata kunci, atau karakter set yang digunakan.
+
 `<link>` : Digunakan untuk menghubungkan halaman web dengan file eksternal, seperti file CSS atau ikon favicon.
+
 `<style>`: Ini digunakan untuk menulis kode CSS dalam halaman HTML atau sebagai bagian dari halaman HTML.
+
 `<body>`: Tag ini mengelilingi konten utama halaman web, termasuk teks, gambar, dan elemen-elemen lainnya yang akan ditampilkan kepada pengguna.
 
 `<h1>, <h2>, <h3>, <h4>, <h5>, <h6>`: Digunakan untuk membuat judul atau heading dengan tingkat kepentingan yang berbeda, dimulai dari `<h1>` yang paling penting hingga `<h6>` yang paling rendah.
