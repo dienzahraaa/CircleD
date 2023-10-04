@@ -143,7 +143,40 @@ agar halaman daftar inventori yang berupa tabel tersebut berwarna, saya mengguna
         color: #fff;
     }
 
-dengan kode diata aku menyesuaikan tabel pada CircleD sesuai kemauan aku, seperti mengubah warna memberi border, padding dan sebagainya
+dengan kode diatas saya menyesuaikan tabel pada CircleD sesuai keperluan website saya, seperti mengubah warna, memberi border, padding dan sebagainya
+Sebagai tambahan saya juga menambahkan navbar pada halaman main. Dengan kode sebagai berikut
+
+    ...
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 35px;
+    }
+    ...
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c06996;">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <h1>
+                            CircleD
+                            <small class="fs-6 fst-italic">by dien</small>
+                        </h1>
+                    </div>
+                    <div class="col-auto">
+                        <form class="ml-auto">
+                            <a href="{% url 'main:logout' %}">
+                                <button class="btn btn-danger" type="button">Log out</button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        ...
+    
 
 ## BONUS
 Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.
