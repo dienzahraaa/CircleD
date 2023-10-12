@@ -4,6 +4,31 @@ NPM : 2206828033
 
 Kelas : PBP-F
 
+# TUGAS 6
+## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+Perbedaan antara asynchronous programming dan synchronous programming terletak pada cara mereka mengeksekusi tugas-tugas dalam program. Synchronous programming melakukan tugas satu per satu dalam urutan yang telah ditentukan, yang berarti setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat diproses. Hal ini mengakibatkan pemblokiran utas utama program hingga semua tugas selesai, yang dapat memperlambat waktu eksekusi. Sebaliknya, asynchronous programming memungkinkan tugas untuk diselesaikan tanpa harus menunggu tugas sebelumnya selesai terlebih dahulu. Ini berarti tugas-tugas dapat dieksekusi secara bersamaan atau dalam urutan yang tidak terikat pada prioritas. Kelebihan dari pendekatan ini adalah program tidak terikat pada proses I/O yang lambat, sehingga waktu eksekusi dapat menjadi lebih singkat dan efisien. Selain itu, asynchronous programming dapat meningkatkan responsifitas program dan mengoptimalkan penggunaan sumber daya. Dengan demikian, perbedaan mendasar antara keduanya adalah bagaimana mereka mengelola dan menyelesaikan tugas dalam program, dengan synchronous lebih terstruktur dan berurutan, sementara asynchronous lebih fleksibel dan tidak terikat oleh urutan eksekusi.
+
+## Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.	
+
+Paradigma event-driven programming adalah suatu metode pemrograman di mana alur program ditentukan oleh kejadian (events) yang terjadi. Dalam konteks JavaScript dan AJAX, ini berarti program menunggu dan merespons kejadian yang terjadi, seperti klik tombol, perubahan nilai dalam input field, pengiriman formulir, atau permintaan data dari server, sebelum melanjutkan eksekusi kode. Paradigma ini memungkinkan program menjadi lebih responsif, karena tidak perlu mengeksekusi kode secara terus-menerus, tetapi hanya saat diperlukan. Salah satu contoh penerapannya adalah ketika kita memiliki halaman web dengan tombol yang memicu permintaan AJAX ketika diklik. Dalam kasus ini, ketika tombol di klik, sebuah event (kejadian) "click" terjadi, dan program akan merespons event tersebut dengan menjalankan fungsi atau tindakan tertentu, seperti mengirim permintaan AJAX ke server untuk mengambil atau mengirim data tanpa menghentikan eksekusi program utama. Ini memungkinkan aplikasi web untuk tetap responsif terhadap tindakan pengguna tanpa harus menunggu proses-peroses yang lama selesai. Dengan pendekatan ini, program JavaScript dan AJAX bisa menjadi lebih dinamis dan interaktif, memberikan pengalaman pengguna yang lebih baik dan merespons secara cepat terhadap aktivitas pengguna di halaman web.
+
+## Jelaskan penerapan asynchronous programming pada AJAX.
+Penerapan asynchronous programming pada AJAX adalah sebuah pendekatan yang memungkinkan pengiriman permintaan data ke server dan pengambilan data dari server dilakukan secara tidak langsung, tanpa harus memblokir eksekusi program utama. Dalam praktiknya, ini berarti bahwa program tidak perlu menunggu respons dari server sebelum melanjutkan eksekusi, sehingga memungkinkan program tetap responsif terhadap interaksi pengguna dan tugas-tugas lainnya. Langkah utama dalam penerapan asynchronous programming pada AJAX mencakup pengiriman permintaan ke server dengan menggunakan objek `XMLHttpRequest` atau API `fetch`, penanganan respons melalui definisi fungsi callback, dan penanganan respons sukses serta penanganan kesalahan. Ketika respons dari server tiba, fungsi callback akan dijalankan untuk memproses data yang diterima dan mengambil tindakan yang sesuai. Selain itu, asynchronous programming juga memungkinkan pengembang menjaga responsifitas aplikasi, memungkinkan pengguna untuk berinteraksi dengan halaman web tanpa mengalami gangguan atau penundaan yang berlebihan. Dengan pendekatan ini, aplikasi web dapat memberikan pengalaman yang lebih interaktif dan cepat kepada pengguna, membuatnya sangat relevan dalam pengembangan aplikasi web modern.
+
+## Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+Ketika memilih antara Fetch API dan jQuery untuk penerapan AJAX, penting untuk mempertimbangkan kebutuhan proyek dan preferensi pengembang. Fetch API adalah solusi modern yang disediakan oleh browser dan memiliki beberapa keunggulan, terutama dalam hal performa. Fetch API memungkinkan permintaan data ke server secara asynchronous dengan cara yang lebih ringkas dan sederhana dibandingkan dengan pendekatan lama menggunakan XMLHttpRequest. Selain itu, Fetch API mendukung Promise, yang membuat penanganan respons dari server menjadi lebih mudah dan bersih.
+
+Di sisi lain, jQuery adalah library JavaScript yang luas, yang tidak hanya menyediakan fitur AJAX untuk permintaan data ke server, tetapi juga berbagai fitur lain seperti manipulasi DOM, animasi, dan event handling. Jika proyek Anda memerlukan banyak fitur ini, penggunaan jQuery bisa menjadi pilihan yang nyaman dan efisien. Namun, perlu diingat bahwa jQuery memerlukan library tambahan, yang dapat mempengaruhi performa dan ukuran total aplikasi.
+
+Dalam hal performa, Fetch API cenderung lebih cepat karena lebih ringan tanpa perlu mengunduh dan menginisialisasi library tambahan seperti jQuery. Jadi, jika performa adalah faktor kunci dalam proyek Anda dan Anda hanya memerlukan kemampuan AJAX, maka Fetch API mungkin menjadi pilihan yang lebih baik.
+
+Pilihan antara Fetch API dan jQuery tergantung pada kebutuhan proyek dan prioritas Anda. Jika proyek Anda fokus pada komunikasi dengan server dan performa yang optimal, Fetch API adalah pilihan yang kuat. Namun, jika Anda memerlukan banyak fitur lain dan kenyamanan dalam pengembangan, jQuery tetap menjadi opsi yang valid.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+
 
 # TUGAS 5
 ## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
