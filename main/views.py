@@ -25,7 +25,7 @@ def show_main(request):
         'class': 'F',
         'items': items,
         'item_count' : item_count,
-        # 'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "main.html", context)
@@ -78,7 +78,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             response = HttpResponseRedirect(reverse("main:show_main")) 
-            # response.set_cookie('last_login', str(datetime.datetime.now()))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
             messages.info(request, 'Sorry, incorrect username or password. Please try again.')
@@ -88,7 +88,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
-    # response.delete_cookie('last_login')
+    response.delete_cookie('last_login')
     return response
 
 def increase_item_amount(request, id):
@@ -128,3 +128,9 @@ def add_product_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_item_ajax(request, id):
+    item = Item.objects.get(pk=id)
+    item.delete()
+    return HttpResponse(b"DELETED", status=201)

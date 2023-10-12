@@ -11,16 +11,6 @@
         background-attachment: fixed; 
         height: 100vh;
     }
-
-    .product-card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px;
-            width: 300px;
-            text-align: center;
-        }
-
     
     .informasi {
         margin-left: 20px;
@@ -107,7 +97,7 @@
         color: #fff;
     }
 
-    .product-card {
+    .product-cards {
             border: 3px solid #0f1842;
             border-radius: 10px;
             padding: 10px;
@@ -120,30 +110,25 @@
             
         }
 
-        .button-group {
-            display: flex;
-            justify-content: center;
-        }
+    .button-group {
+        display: flex;
+        justify-content: center;
+    }
 
-        
-        .button-group button {
-            margin: 10px; /* Add margin for spacing between buttons */
-        }
+    .button-group button {
+        margin: 10px; /* Add margin for spacing between buttons */
+    }
 
-        .product-cards .product-card:last-child {
-            background-color: #3a251b; 
-        }
+    .last-product {
+        background-color: #b9ccf9; 
+    }
 
 </style>
-
 <body>
-
 <div >
         
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Container wrapper -->
     <div class="container-fluid">
-      <!-- Toggle button -->
       <button
         class="navbar-toggler"
         type="button"
@@ -177,7 +162,6 @@
           <i class="fas fa-shopping-cart"></i>
         </a>
   
-        <!-- Avatar -->
         <div class="dropdown">
           <a
             class="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -268,39 +252,10 @@
             <h5>Kamu menyimpan <span class="badge bg-secondary">{{ item_count }}</span> item pada aplikasi ini</h5>
         </div>
 
-        <div class="product-cards">
-            {% for item in items %}
-            <div class="product-card">
-                <h2 style="color: #420f29;">{{ item.name }}</h2>
-                <p>Category: {{ item.category }}</p>
-                <p>Price: Rp{{ item.price }}</p>
-                <p>Amount: {{ item.amount }}</p>
-                <p>Description: {{ item.description }}</p>
-    
-                <!-- Form implementation within the card -->
-                <div class="button-group">
-                    <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
-                    </form>
-    
-                    <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
-                    </form>
-                </div>
-    
+        <div class="product-card" id="product-card"></div>
 
-                <form method="post" action="{% url 'main:remove_item' item.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Remove</button>
-                </form>
-
-
-            </div>
-            {% endfor %}
     <div class="card-footer">
-        <!-- <h6>Sesi terakhir login: {{ last_login }}</h6> -->
+        <h6>Sesi terakhir login: {{ last_login }}</h6>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
         <a href="{% url 'main:create_product' %}" class="btn btn-outline-info" style="color: #FFFFFF; outline-color: #273a7d; border-color: #273a7d; background-color: #273a7d;">
             Add New Product
@@ -313,129 +268,6 @@
 </div>
 </body>
 
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
-    <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-  
-      <!-- Right -->
-      <div>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-      <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
-  
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3"></i>Company name
-            </h6>
-            <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Products
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              info@example.com
-            </p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-    <!-- Section: Links  -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
-
 
   
   <script>
@@ -444,55 +276,63 @@
     }
 
     async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = ""
-        const products = await getProducts()
-        let htmlString = `<tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Description</th>
-        </tr>`
+        const items = await getProducts();
+        document.getElementById( "product-card" ).innerHTML = "";
+        let htmlString = ""
+        console.log( items )
+        items.forEach((item) => {
+        htmlString += `\n
+            <div class="product-cards">
+                <h2>
+                    ${item.fields.name}
+                </h2>
+                <p>Category: ${item.fields.category}</p>
+                <p>Price: Rp${item.fields.price}</p>
+                <p>Amount: ${item.fields.amount}</p>
+                <p>Description: ${item.fields.description}</p>
+                <div class="button-group">
+                    <a href='decrease_item_amount/${item.pk}'>
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
+                    </a>
+                    <a href='increase_item_amount/${item.pk}'>
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
+                    </a>
+                </div>
 
-        products.forEach((item) => {
-            htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.category}</td>
-            <td>${item.fields.price}</td>
-            <td>${item.fields.amount}</td>
-            <td>${item.fields.description}</td>
-        </tr>`
+                    <a href='remove_item_amount/${item.pk}/'>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </a>
+                    <button type="button" style="margin-top:10px" class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete Product by AJAX</button>
+                
+
+            </div>
+            </div>
+        `
         })
-
-        document.getElementById("product_table").innerHTML = htmlString
+        document.getElementById( "product-card" ).innerHTML = htmlString
     }
 
     refreshProducts()
 
     function addProduct() {
-        console.log('haho');
-        const form = new FormData()
-        form.append("name", document.querySelector('#name-input').value)
-        form.append("category", document.querySelector('#category-input').value)
-        form.append("price", document.querySelector('#price-input').value)
-        form.append("amount", document.querySelector('#amount-input').value)
-        form.append("description", document.querySelector('#desc-input').value)
-
         fetch("{% url 'main:add_product_ajax' %}", {
             method: "POST",
-            body: form
+            body: new FormData(document.querySelector('#form'))
         }).then(refreshProducts)
 
-        window.location.reload()
         document.getElementById("form").reset()
-        
         return false
     }
-
-
     document.getElementById("button_add").onclick = addProduct
-
     
+    function deleteProduct(id){
+        fetch("/delete-item-ajax/" + id + "/", {
+            method: "POST"
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
 </script>
 {% endblock content %}
 
