@@ -6,7 +6,7 @@ from main.views import show_main, create_product, show_xml, show_json
 from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
 from main.views import register 
 from main.views import login_user
-from main.views import logout_user
+from main.views import logout_user, get_product_json, add_product_ajax
 
 app_name = 'main'
 
@@ -23,4 +23,6 @@ urlpatterns = [
     path('remove_item_amount/<int:id>/', remove_item, name='remove_item'),
     path('increase_item_amount/<int:id>/', increase_item_amount, name='increase_item_amount'),
     path('decrease_item_amount/<int:id>/', decrease_item_amount, name='decrease_item_amount'),
+    path('get-product/', get_product_json, name='get_product_json'),
+path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
 ]

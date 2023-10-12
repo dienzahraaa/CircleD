@@ -3,6 +3,7 @@
 {% block content %}
 
 <style>
+    
     body {
         background-image: url('https://wallpapercave.com/wp/wp3152211.jpg'); 
         background-size: cover; 
@@ -11,28 +12,29 @@
         height: 100vh;
     }
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        background-color: #333;
-        padding: 10px 20px;
-        color: #fff;
-        font-size: 35px;
-    }
+    .product-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+        }
 
+    
     .informasi {
         margin-left: 20px;
         margin-top: 30px;
     }
 
     .btn-outline-info:hover {
-        outline: #420f29;
-        background-color: #b479a2;
+        outline: #180f42;
+        background-color: #7985b4;
         color: #fff;
     }
 
     h5 {
-        color: #570932;
+        color: #091357;
         font-family: Arial, sans-serif;
         font-size: 23px;
         font-weight: bold;
@@ -40,7 +42,7 @@
     }
 
     h5 span {
-        color: #570932;
+        color: #091257;
         font-family: Arial, sans-serif;
         font-size: 20px;
         font-weight: medium;
@@ -49,13 +51,15 @@
 
     p {
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        text-align: left;
     }
 
     .card {
         margin: 20px auto;
         padding: 20px;
-        max-width: 1000px;
+        max-width: 1060px;
         border: 1px solid #ccc;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -63,7 +67,7 @@
     }
 
     .card-header {
-        background-color: #c06996;
+        background-color: #0e2a51;
         color: #fff;
         text-align: center;
         padding: 10px;
@@ -79,16 +83,11 @@
         padding: 10px;
     }
 
-    table tr {
-        background-color: #fdd3d3; 
-        border: 2px solid #000000;
-    }
-
     table {
         width: 100%;
         border-collapse: collapse;
-        border: 2px solid #000000; /* Warna border pink */
-        background-color: #570932;
+        border: 2px solid #000000; 
+        background-color: #150957;
     }
 
     th, td {
@@ -97,91 +96,213 @@
         border: 2px solid #000000;
     }
 
+    table tr {
+        background-color: #d3dafd; 
+        border: 2px solid #000000;
+    }
    
     table tr:last-child {
-        background-color: #420f29; /* Warna pink yang berbeda */
+        background-color: #110f42; 
         border: 2px solid #000000;
         color: #fff;
     }
+
+    .product-card {
+            border: 3px solid #0f1842;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            display: inline-block;
+            align-items: center;
+            
+            
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        
+        .button-group button {
+            margin: 10px; /* Add margin for spacing between buttons */
+        }
+
+        .product-cards .product-card:last-child {
+            background-color: #3a251b; 
+        }
+
 </style>
+
 <body>
 
-    <div >
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c06996;">
-            <div class="container-fluid">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col">
-                        <h1>
-                            CircleD
-                            <small class="fs-6 fst-italic">by dien</small>
-                        </h1>
-                    </div>
-                    <div class="col-auto">
-                        <form class="ml-auto">
-                            <a href="{% url 'main:logout' %}">
-                                <button class="btn btn-danger" type="button">Log out</button>
-                            </a>
-                        </form>
-                    </div>
-                </div>
+<div >
+        
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="navbar-brand mt-2 mt-lg-0" href="#">
+          <img
+            src="https://th.bing.com/th/id/OIP.bsNJSXqAeACoGE8OcD-hEwHaIR?pid=ImgDet&w=1720&h=1920&rs=1"
+            height="60"
+            alt="CircleD Logo"
+            loading="lazy"
+          />
+        </a>
+        <h2>CircleD</h2>
+        
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'main:create_product' %}">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'main:logout' %}" style="color: crimson;">Logout</a>
+          </li>
+        </ul>
+    </div>
+  
+      <div class="d-flex align-items-center">
+        <a class="text-reset me-3" href="#">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+  
+        <!-- Avatar -->
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+            href="#"
+            id="navbarDropdownMenuAvatar"
+            role="button"
+            data-CircleD-toggle="dropdown"
+            aria-expanded="true"
+          >
+            <img
+              src="https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png"
+              class="rounded-circle"
+              height="60"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+            />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuAvatar"
+          >
+            <li>
+              <a class="dropdown-item" href="#">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </nav>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input id="name-input" type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <input id="category-input" type="text" class="form-control" id="category" name="category"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input id="price-input" type="number" class="form-control" id="price" name="price"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input id="amount-input" type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea id="desc-input" class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="card">
     <div class="card-header">
         <h1>Daftar Produk</h1>
     </div>
     <div class="card-body">
+       
         <div class="informasi">
             <h5>Nama: <span>{{name}}</span></h5>
             <h5>Kelas: <span>{{class}}</span></h5>
             <h5>Kamu menyimpan <span class="badge bg-secondary">{{ item_count }}</span> item pada aplikasi ini</h5>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th colspan="3">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.category}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.amount}}</td>
-                    <td>{{item.description}}</td>
-                    <td>
-                        <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="{% url 'main:remove_item' item.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+        <div class="product-cards">
+            {% for item in items %}
+            <div class="product-card">
+                <h2 style="color: #420f29;">{{ item.name }}</h2>
+                <p>Category: {{ item.category }}</p>
+                <p>Price: Rp{{ item.price }}</p>
+                <p>Amount: {{ item.amount }}</p>
+                <p>Description: {{ item.description }}</p>
+    
+                <!-- Form implementation within the card -->
+                <div class="button-group">
+                    <form method="post" action="{% url 'main:increase_item_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
+                    </form>
+    
+                    <form method="post" action="{% url 'main:decrease_item_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
+                    </form>
+                </div>
+    
+
+                <form method="post" action="{% url 'main:remove_item' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </form>
+
+
+            </div>
+            {% endfor %}
     <div class="card-footer">
-        <h6>Sesi terakhir login: {{ last_login }}</h6>
-        <a href="{% url 'main:create_product' %}" class="btn btn-outline-info" style="color: #FFFFFF; outline-color: #7d2763; border-color: #7d2763; background-color: #7d2763;">
+        <!-- <h6>Sesi terakhir login: {{ last_login }}</h6> -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+        <a href="{% url 'main:create_product' %}" class="btn btn-outline-info" style="color: #FFFFFF; outline-color: #273a7d; border-color: #273a7d; background-color: #273a7d;">
             Add New Product
         </a>
 
@@ -191,4 +312,187 @@
     </div>
 </div>
 </body>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+  
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Company name
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer content. Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Products
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Angular</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">React</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vue</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Laravel</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Pricing</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Settings</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              info@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+  
+  <script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>`
+
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.category}</td>
+            <td>${item.fields.price}</td>
+            <td>${item.fields.amount}</td>
+            <td>${item.fields.description}</td>
+        </tr>`
+        })
+
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+
+    refreshProducts()
+
+    function addProduct() {
+        console.log('haho');
+        const form = new FormData()
+        form.append("name", document.querySelector('#name-input').value)
+        form.append("category", document.querySelector('#category-input').value)
+        form.append("price", document.querySelector('#price-input').value)
+        form.append("amount", document.querySelector('#amount-input').value)
+        form.append("description", document.querySelector('#desc-input').value)
+
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: form
+        }).then(refreshProducts)
+
+        window.location.reload()
+        document.getElementById("form").reset()
+        
+        return false
+    }
+
+
+    document.getElementById("button_add").onclick = addProduct
+
+    
+</script>
 {% endblock content %}
+
