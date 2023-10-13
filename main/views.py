@@ -131,6 +131,7 @@ def add_product_ajax(request):
 
 @csrf_exempt
 def delete_item_ajax(request, id):
-    item = Item.objects.get(pk=id)
-    item.delete()
-    return HttpResponse(b"DELETED", status=201)
+    if request.method == 'DELETE':
+        product = Item.objects.get(id=id, user=request.user)
+        product.delete()
+        return HttpResponse(b"CREATED", status=201)
