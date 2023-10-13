@@ -4,6 +4,215 @@ NPM : 2206828033
 
 Kelas : PBP-F
 
+tautan aplikasi :[ ](https://dien-fitriani-tugas.pbp.cs.ui.ac.id/)
+
+# TUGAS 6
+## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+Perbedaan antara asynchronous programming dan synchronous programming terletak pada cara mereka mengeksekusi tugas-tugas dalam program. Synchronous programming melakukan tugas satu per satu dalam urutan yang telah ditentukan, yang berarti setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat diproses. Hal ini mengakibatkan pemblokiran utas utama program hingga semua tugas selesai, yang dapat memperlambat waktu eksekusi. Sebaliknya, asynchronous programming memungkinkan tugas untuk diselesaikan tanpa harus menunggu tugas sebelumnya selesai terlebih dahulu. Ini berarti tugas-tugas dapat dieksekusi secara bersamaan atau dalam urutan yang tidak terikat pada prioritas. Kelebihan dari pendekatan ini adalah program tidak terikat pada proses I/O yang lambat, sehingga waktu eksekusi dapat menjadi lebih singkat dan efisien. Selain itu, asynchronous programming dapat meningkatkan responsifitas program dan mengoptimalkan penggunaan sumber daya. Dengan demikian, perbedaan mendasar antara keduanya adalah bagaimana mereka mengelola dan menyelesaikan tugas dalam program, dengan synchronous lebih terstruktur dan berurutan, sementara asynchronous lebih fleksibel dan tidak terikat oleh urutan eksekusi.
+
+## Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.	
+
+Paradigma event-driven programming adalah suatu metode pemrograman di mana alur program ditentukan oleh kejadian (events) yang terjadi. Dalam konteks JavaScript dan AJAX, ini berarti program menunggu dan merespons kejadian yang terjadi, seperti klik tombol, perubahan nilai dalam input field, pengiriman formulir, atau permintaan data dari server, sebelum melanjutkan eksekusi kode. Paradigma ini memungkinkan program menjadi lebih responsif, karena tidak perlu mengeksekusi kode secara terus-menerus, tetapi hanya saat diperlukan. Salah satu contoh penerapannya adalah ketika kita memiliki halaman web dengan tombol yang memicu permintaan AJAX ketika diklik. Dalam kasus ini, ketika tombol di klik, sebuah event (kejadian) "click" terjadi, dan program akan merespons event tersebut dengan menjalankan fungsi atau tindakan tertentu, seperti mengirim permintaan AJAX ke server untuk mengambil atau mengirim data tanpa menghentikan eksekusi program utama. Ini memungkinkan aplikasi web untuk tetap responsif terhadap tindakan pengguna tanpa harus menunggu proses-peroses yang lama selesai. Salah satu contoh penerapan paradigma event-driven programming dalam tugas ini adalah ketika pengguna mengklik tombol "Add Product by AJAX" atau "Delete Product by AJAX." Ketika tombol ini diklik, fungsi JavaScript yang sesuai dipanggil sebagai respons terhadap peristiwa ini. Pada contoh "Add Product by AJAX," fungsi addProduct akan dijalankan, dan pada contoh "Delete Product by AJAX," fungsi deleteProduct akan dijalankan. Dengan kata lain, eksekusi program tidak terjadi secara sekuensial, tetapi tergantung pada kejadian (klik tombol) yang terjadi dalam interaksi pengguna. Ini memungkinkan tampilan dan perilaku halaman web berubah secara dinamis sesuai dengan tindakan pengguna, yang menciptakan pengalaman yang lebih interaktif dan responsif.
+
+## Jelaskan penerapan asynchronous programming pada AJAX.
+Penerapan asynchronous programming pada AJAX adalah sebuah pendekatan yang memungkinkan pengiriman permintaan data ke server dan pengambilan data dari server dilakukan secara tidak langsung, tanpa harus memblokir eksekusi program utama. Dalam praktiknya, ini berarti bahwa program tidak perlu menunggu respons dari server sebelum melanjutkan eksekusi, sehingga memungkinkan program tetap responsif terhadap interaksi pengguna dan tugas-tugas lainnya. Langkah utama dalam penerapan asynchronous programming pada AJAX mencakup pengiriman permintaan ke server dengan menggunakan objek `XMLHttpRequest` atau API `fetch`, penanganan respons melalui definisi fungsi callback, dan penanganan respons sukses serta penanganan kesalahan. Ketika respons dari server tiba, fungsi callback akan dijalankan untuk memproses data yang diterima dan mengambil tindakan yang sesuai. Selain itu, asynchronous programming juga memungkinkan pengembang menjaga responsifitas aplikasi, memungkinkan pengguna untuk berinteraksi dengan halaman web tanpa mengalami gangguan atau penundaan yang berlebihan. 
+
+## Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+Fetch API adalah solusi modern yang disediakan oleh browser dan memiliki beberapa keunggulan, terutama dalam hal performa. Fetch API memungkinkan permintaan data ke server secara asynchronous dengan cara yang lebih ringkas dan sederhana dibandingkan dengan pendekatan lama menggunakan XMLHttpRequest. Selain itu, Fetch API mendukung Promise, yang membuat penanganan respons dari server menjadi lebih mudah dan bersih. Di sisi lain, jQuery adalah library JavaScript yang luas, yang tidak hanya menyediakan fitur AJAX untuk permintaan data ke server, tetapi juga berbagai fitur lain seperti manipulasi DOM, animasi, dan event handling. Jika proyeknya memerlukan banyak fitur ini, penggunaan jQuery bisa menjadi pilihan yang nyaman dan efisien. Namun, perlu diingat bahwa jQuery memerlukan library tambahan, yang dapat mempengaruhi performa dan ukuran total aplikasi. Dalam hal performa, Fetch API cenderung lebih cepat karena lebih ringan tanpa perlu mengunduh dan menginisialisasi library tambahan seperti jQuery. Jadi, jika performa adalah faktor kunci dalam proyek dan hanya memerlukan kemampuan AJAX, maka Fetch API mungkin menjadi pilihan yang lebih baik. Pilihan antara Fetch API dan jQuery tergantung pada kebutuhan proyek. Jika proyek fokus pada komunikasi dengan server dan performa yang optimal, Fetch API adalah pilihan yang kuat. Namun, jika proyek memerlukan banyak fitur lain dan kenyamanan dalam pengembangan, jQuery tetap menjadi opsi yang valid.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Untuk mengimplementasikan checklist yang diberikan di tugas ini, saya memodifikasi beberapa kode di file yang telah ada yakni views.py, urls.py dan main.html. Kode tersebut di antaranya yakni, pertama tambahan kode yang ada di file views.py yakni
+
+    def get_product_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+    @csrf_exempt
+    def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        category = request.POST.get("category")
+        price = request.POST.get("price")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Item(name=name, category=category, price=price, amount=amount, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+     
+Penjelasan : Kode di atas adalah bagian dari view pada aplikasi web Django. Pertama, get_product_json mengambil semua objek dari model Item menggunakan Item.objects.all(), kemudian mengonversinya menjadi format JSON menggunakan serializers.serialize, dan mengembalikan JSON sebagai respons HTTP saat permintaan GET diterima. Ini memungkinkan program untuk mengambil data produk melalui AJAX GET. Selanjutnya, add_product_ajax adalah view yang digunakan untuk menambahkan produk baru ke dalam database. Jika permintaan yang diterima adalah POST, view ini akan mengambil data seperti nama, kategori, harga, jumlah, dan deskripsi produk dari permintaan POST. Kemudian, view akan membuat objek Item baru dengan data tersebut, menyimpannya ke dalam database, dan mengembalikan respons HTTP dengan status "CREATED" (201 Created) jika produk berhasil ditambahkan. Jika permintaan bukan POST, view ini akan mengembalikan respons HTTP dengan status "Not Found" (404 Not Found)Sehingga halaman web dapat menambahkan produk baru melalui AJAX POST.
+
+Selanjutnya di file urls.py saya menambahkan path baru yakni 
+
+     urlpatterns = [
+    # ...
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-product-ajax/', add_product_ajax, name='add_product_ajax'),
+    # ...
+    ]
+
+Penjelasan : Kode di atas adalah bagian dari file `urls.py` dalam aplikasi web Django yang menentukan rute atau URL endpoint yang akan digunakan untuk mengakses dua view, yaitu `get_product_json` dan `add_product_ajax`. Rute `'get-product/'` akan terkait dengan view `get_product_json`, yang digunakan untuk mengambil data produk melalui permintaan AJAX GET. Rute `'create-product-ajax/'` akan terkait dengan view `add_product_ajax`, yang memungkinkan penambahan produk baru ke dalam database melalui permintaan AJAX POST. Dengan demikian, pengguna dapat mengakses data produk atau menambahkan produk baru melalui URL yang sesuai dengan masing-masing view.
+
+Dan terakhir, beberapa poin yang saya tambahkan dan ubah di file main.html adalah.
+Pertama saya menambahkan script di akhir berkas
+
+    <script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        const items = await getProducts();
+        document.getElementById( "product-card" ).innerHTML = "";
+        let htmlString = ""
+        console.log( items )
+        items.forEach((item) => {
+        htmlString += `\n
+            <div class="product-cards">
+                <h2>
+                    ${item.fields.name}
+                </h2>
+                <p>Category: ${item.fields.category}</p>
+                <p>Price: Rp${item.fields.price}</p>
+                <p>Amount: ${item.fields.amount}</p>
+                <p>Description: ${item.fields.description}</p>
+                <div class="button-group">
+                    <a href='decrease_item_amount/${item.pk}'>
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Decrease</button>
+                    </a>
+                    <a href='increase_item_amount/${item.pk}'>
+                        <button type="submit" class="btn btn-outline-info" style="color: #7d2763; outline-color: #7d2763; border-color: #7d2763;">Increase</button>
+                    </a>
+                </div>
+
+                    <a href='remove_item_amount/${item.pk}/'>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </a>
+                    <button type="button" style="margin-top:10px" class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete Product by AJAX</button>
+                
+
+            </div>
+            </div>
+        `
+        })
+        document.getElementById( "product-card" ).innerHTML = htmlString
+    }
+
+    refreshProducts()
+
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+    
+    #....
+    </script>
+Penjelasan : Kode JavaScript di atas digunakan untuk mengatur tampilan produk pada halaman web dan berinteraksi dengan server melalui permintaan AJAX.
+
+- getProducts: Fungsi ini bertujuan untuk mengambil data produk dari server menggunakan permintaan AJAX GET. Prosesnya dimulai dengan pemanggilan fetch API yang mengirimkan permintaan ke URL yang disediakan oleh {% url 'main:get_product_json' %}. Setelah permintaan berhasil selesai, hasilnya diurai sebagai JSON dengan res.json(). Hasil JSON ini mengandung data produk yang kemudian dapat digunakan untuk memperbarui tampilan produk di halaman web.
+
+- refreshProducts: Fungsi ini bertanggung jawab memperbarui tampilan produk pada halaman web. Setelah mengambil data produk dengan bantuan getProducts, fungsi ini membersihkan konten di dalam elemen dengan ID "product-card" (dengan document.getElementById("product-card").innerHTML = "") dan kemudian membangun tampilan produk baru berdasarkan data produk yang telah diambil. Data produk ini diambil dari hasil yang diperoleh melalui getProducts. Hasil HTML ini kemudian ditetapkan sebagai isi dari elemen "product-card," sehingga tampilan produk dihalaman web diperbarui dengan data yang paling baru.
+
+- addProduct: Fungsi ini memungkinkan pengguna untuk menambahkan produk baru ke dalam database melalui permintaan AJAX POST. Ketika pengguna mengklik tombol "Add Product by AJAX," fungsi ini akan mengambil data dari formulir yang memiliki ID "form" menggunakan new FormData(document.querySelector('#form')) dan mengirimnya ke server menggunakan fetch. Setelah produk berhasil ditambahkan, tampilan produk diperbarui kembali dengan memanggil refreshProducts. Selain itu, formulir juga direset sehingga pengguna dapat menambahkan produk baru dengan mudah.
+
+Selain kode di atas, untuk menampilkan modal untuk add product by ajax, penambahan button baru, dan tampilan cards yang disesuaikan saya menambahkan kode berikut
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input id="name-input" type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <input id="category-input" type="text" class="form-control" id="category" name="category"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input id="price-input" type="number" class="form-control" id="price" name="price"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input id="amount-input" type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea id="desc-input" class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    ....
+    <div class="product-card" id="product-card"></div>
+
+    ....
+     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+
+Penjelasan kode (tahap 1) : Kode HTML ini memberikan struktur sebuah modal pop-up yang digunakan dalam halaman web. Modal pop-up ini memiliki tujuan untuk mengizinkan pengguna untuk menambahkan produk baru dengan mengisi informasi yang diperlukan. Modal ini memiliki beberapa elemen penting, termasuk judul "Add New Product," sebuah formulir yang mencakup bidang input seperti nama, kategori, harga, jumlah, dan deskripsi produk, serta dua tombol di bagian bawah modal: "Close" dan "Add Product." 
+
+Ketika pengguna mengklik tombol "Add Product by AJAX" di halaman web, modal ini muncul, memungkinkan mereka untuk memasukkan data produk baru. Pengguna dapat mengisi semua detail yang diperlukan dalam formulir ini. Modal ini juga telah disesuaikan untuk menggunakan token CSRF (Cross-Site Request Forgery) untuk memastikan keamanan saat mengirimkan data ke server. Setelah pengguna mengisi formulir dan mengklik tombol "Add Product," data produk yang dimasukkan akan dikirim ke server menggunakan permintaan AJAX POST. Tombol "Close" juga memungkinkan pengguna untuk menutup modal tanpa menambahkan produk. Keseluruhan elemen modal ini akan bekerja bersama dengan kode JavaScript yang sesuai.
+
+Penjelasan kode (tahap 2): Kode HTML `<div class="product-card" id="product-card"></div>` adalah elemen tempat yang digunakan untuk menampilkan produk di halaman web. Dengan menggunakan kode ini, pembentukan elemen-elemen card produk yang sebelumnya dijelaskan dalam HTML, sekarang dilakukan melalui kode JavaScript. Data produk diambil dari server melalui permintaan AJAX GET, lalu diolah dan ditampilkan dinamis dalam elemen "product-card" dengan menggunakan JavaScript. Dengan demikian, perubahan ini memungkinkan program untuk memuat dan menampilkan produk secara dinamis tanpa perlu merender ulang seluruh halaman web setiap kali ada perubahan, menciptakan pengalaman yang lebih responsif bagi pengguna.
+
+Penjelasan kode (tahap 3): Kode HTML `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>` adalah tombol yang memicu munculnya modal pop-up dengan ID "exampleModal" ketika diklik. Ketika pengguna mengklik tombol ini, modal "Add New Product" akan tampil di layar, memungkinkan mereka untuk memasukkan detail produk baru. Ini adalah elemen interaktif yang memungkinkan pengguna untuk memulai proses penambahan produk dengan menggunakan formulir yang ada dalam modal tersebut. Dengan demikian, tombol ini mengintegrasikan antara aksi pengguna dan tampilan modal, memfasilitasi penambahan produk baru ke dalam halaman web melalui AJAX.
+
+Penjelasan singkat:
+1. AJAX GET:
+   - Ubah Kode Cards Data Item: Saya menhapus kode untuk pembuatan cards yang awalnya terdapat di berkas html dengan kode yang ada di atas, dan content cards diisi pada fungsi dalam script yakni saat refreshProduct()
+   - Lakukan Pengambilan Task Menggunakan AJAX GET: Pada kode yang telah saya berikan, fungsi getProducts() yang menggunakan Fetch API untuk mengambil data item dari server melalui {% url 'main:get_product_json' %}. Kemudian, memproses data ini dalam fungsi refreshProducts() dan menampilkan item di dalam elemen dengan ID "product-card".
+2. AJAX POST:
+   - Buat Tombol dan Modal untuk Tambah Item: Pada kode yang telah saya berikan, saya menambahkan tombol "Add Product by AJAX" yang membuka modal untuk menambahkan item. Tombol ini memicu fungsi addProduct().
+   - Buat Fungsi View Baru: Pada kode yang telah saya berikan, fungsi view add_product_ajax yang menangani permintaan POST untuk menambahkan item baru ke basis data. Fungsi ini menerima data dari formulir modal dan menyimpan item baru ke basis data.
+   - Buat Path untuk Fungsi View Baru: Pada kode yang telah saya berikan, saya menambahkan path "/create-product-ajax/" yang mengarah ke fungsi view add_product_ajax.
+   - Hubungkan Form ke Path POST: Saat user mengklik tombol "Add Product" dalam modal dan mengirimkan formulir, data formulir akan dikirimkan ke path yang sesuai ( yakni /create-product-ajax/) dengan metode HTTP POST. Server saya akan kemudian menangani permintaan POST ini berdasarkan fungsi view yang saya definisikan, yaitu add_product_ajax, untuk menambahkan item baru ke basis data sesuai dengan data yang dimasukkan dalam formulir. Ini terdapat pada kode di berkas html tahap 1 di atas.
+   - Lakukan Refresh Asinkronus: Pada kode yang telah saya berikan, setelah item berhasil ditambahkan ke basis data, program memanggil refreshProducts() untuk memperbarui tampilan produk di halaman web tanpa perlu me-reload seluruh halaman. Ini dilakukan dengan cara mengambil data produk terbaru melalui permintaan AJAX dan menggantikan konten produk yang ada.
+3.  Melakukan perintah collectstatic.
+   Dalam berkas settings.py di folder CircleD ditambahkan `STATIC_ROOT = os.path.join(BASE_DIR, 'static')` setelah itu saya simpan berkas yang saya ubah, dan saya jalankan direktori CircleD di cmd dengan command `python manage.py collectstatic   ` setelah dijalankan perintah tersebut terbentuk folder baru berisi
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/d8018ab9-539a-45ba-8337-99c13b8158f9)
+
+## BONUS
+pada berkas views.py
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/6ac99489-8f0e-40f1-9289-a9a3c9dbdde1)
+
+pada berkas urls.py
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/97f4fe95-0294-4806-892e-06678bde0575)
+
+pada berkas main.html
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/e9ad9ec6-e90e-45a3-9b3c-b74cdfbe894f)
+
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/9aa1b56c-63ce-4723-8efa-a064c47a379e)
+
+Penjelasan : Fungsi `deleteProduct(id)` berperan dalam mengelola penghapusan produk dari halaman web melalui proses yang berjalan secara asinkron dengan menggunakan teknik AJAX. Ketika pengguna mengklik tombol "Delete Product by AJAX," fungsi ini akan dipanggil. Pertama, fungsi ini membuat permintaan POST menggunakan metode `fetch` ke URL "/delete-item-ajax/" dengan menambahkan ID produk yang akan dihapus sebagai bagian dari URL. Ini memungkinkan server untuk mengidentifikasi produk yang harus dihapus. Setelah penghapusan berhasil dilakukan di server, fungsi `then(refreshProducts)` dipanggil, sehingga tampilan produk di halaman web dapat diperbarui dengan data yang paling baru tanpa perlu me-refresh seluruh halaman. Selain itu, formulir yang ada pada halaman juga direset agar pengguna dapat menambahkan produk baru dengan mudah setelah penghapusan. Terakhir, fungsi ini mengembalikan `false` untuk mencegah peristiwa default yang akan memuat ulang halaman atau menavigasi ke halaman baru, sehingga memastikan bahwa proses penghapusan produk terjadi tanpa mengganggu antarmuka pengguna. Dengan demikian, pengguna dapat menghapus produk secara praktis dan melihat pembaruan pada tampilan produk secara instan.
 
 # TUGAS 5
 ## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
