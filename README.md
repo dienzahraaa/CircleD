@@ -200,7 +200,7 @@ Penjelasan singkat:
 ## BONUS
 pada berkas views.py
 
-![image](https://github.com/dienzahraaa/CircleD/assets/124993970/6ac99489-8f0e-40f1-9289-a9a3c9dbdde1)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/69414e3f-ef38-4fe7-b771-c17aebadee5f)
 
 pada berkas urls.py
 
@@ -208,11 +208,14 @@ pada berkas urls.py
 
 pada berkas main.html
 
-![image](https://github.com/dienzahraaa/CircleD/assets/124993970/e9ad9ec6-e90e-45a3-9b3c-b74cdfbe894f)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/4c8796c9-07d3-4004-9c37-77bd4483c611)
 
-![image](https://github.com/dienzahraaa/CircleD/assets/124993970/9aa1b56c-63ce-4723-8efa-a064c47a379e)
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/ebfc8db7-5039-4a53-a47d-24cab0dba967)
 
-Penjelasan : Fungsi `deleteProduct(id)` berperan dalam mengelola penghapusan produk dari halaman web melalui proses yang berjalan secara asinkron dengan menggunakan teknik AJAX. Ketika pengguna mengklik tombol "Delete Product by AJAX," fungsi ini akan dipanggil. Pertama, fungsi ini membuat permintaan POST menggunakan metode `fetch` ke URL "/delete-item-ajax/" dengan menambahkan ID produk yang akan dihapus sebagai bagian dari URL. Ini memungkinkan server untuk mengidentifikasi produk yang harus dihapus. Setelah penghapusan berhasil dilakukan di server, fungsi `then(refreshProducts)` dipanggil, sehingga tampilan produk di halaman web dapat diperbarui dengan data yang paling baru tanpa perlu me-refresh seluruh halaman. Selain itu, formulir yang ada pada halaman juga direset agar pengguna dapat menambahkan produk baru dengan mudah setelah penghapusan. Terakhir, fungsi ini mengembalikan `false` untuk mencegah peristiwa default yang akan memuat ulang halaman atau menavigasi ke halaman baru, sehingga memastikan bahwa proses penghapusan produk terjadi tanpa mengganggu antarmuka pengguna. Dengan demikian, pengguna dapat menghapus produk secara praktis dan melihat pembaruan pada tampilan produk secara instan.
+![image](https://github.com/dienzahraaa/CircleD/assets/124993970/abd8e052-0704-4064-aa5d-bd9a1d5bd788)
+
+
+Penjelasan : Fungsi `deleteProduct(itemId)` digunakan untuk mengonfirmasi dan melakukan penghapusan produk secara asinkron dengan menggunakan teknologi AJAX, yang memungkinkan interaksi dengan server web tanpa perlu me-refresh halaman. Fungsi ini mengirim permintaan penghapusan ke server dengan metode "DELETE" tanpa harus memuat ulang seluruh halaman. Selain itu, ia juga menampilkan pesan konfirmasi kepada pengguna dalam jendela modal sebelum produk dihapus.
 
 # TUGAS 5
 ## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
