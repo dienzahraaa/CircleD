@@ -4,6 +4,8 @@ NPM : 2206828033
 
 Kelas : PBP-F
 
+tautan aplikasi :[ ](https://dien-fitriani-tugas.pbp.cs.ui.ac.id/)
+
 # TUGAS 6
 ## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
 
