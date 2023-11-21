@@ -5,7 +5,7 @@
 <style>
     
     body {
-        background-image: url('https://wallpapercave.com/wp/wp3152211.jpg'); 
+        background-image: url('https://drive.google.com/file/d/1soZ4WpkPac02z_Ii-DhQeD0N6Kuw0v2s/view?usp=sharingg'); 
         background-size: cover; 
         background-repeat: no-repeat; 
         background-attachment: fixed; 
@@ -331,17 +331,6 @@
     }
 
     refreshProducts()
-
-    function addProduct() {
-        fetch("{% url 'main:add_product_ajax' %}", {
-            method: "POST",
-            body: new FormData(document.querySelector('#form'))
-        }).then(refreshProducts)
-
-        document.getElementById("form").reset()
-        return false
-    }
-    document.getElementById("button_add").onclick = addProduct
     
     function deleteProduct(itemId) {
             var myModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
