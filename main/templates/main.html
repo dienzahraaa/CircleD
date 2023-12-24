@@ -5,7 +5,7 @@
 <style>
     
     body {
-        background-image: url('https://drive.google.com/file/d/1soZ4WpkPac02z_Ii-DhQeD0N6Kuw0v2s/view?usp=sharingg'); 
+        background-image: url('https://wallpapercave.com/wp/wp3152211.jpg'); 
         background-size: cover; 
         background-repeat: no-repeat; 
         background-attachment: fixed; 
@@ -267,7 +267,7 @@
         <div class="informasi">
             <h5>Nama: <span>{{name}}</span></h5>
             <h5>Kelas: <span>{{class}}</span></h5>
-            <h5>Kamu menyimpan <span class="badge bg-secondary">{{ item_count }}</span> item pada aplikasi ini</h5>
+            <h5>Kamu menyimpan <span class="badge bg-secondary" id="jumlah">{{ item_count }}</span> item pada aplikasi ini</h5>
         </div>
 
         <div class="product-card" id="product-card"></div>
@@ -288,7 +288,7 @@
 
 
   
-  <script>
+<script>
     async function getProducts() {
         return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
     }
@@ -328,9 +328,21 @@
         `
         })
         document.getElementById( "product-card" ).innerHTML = htmlString
+        document.getElementById( "jumlah" ).innerHTML = items.length
     }
 
     refreshProducts()
+
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
     
     function deleteProduct(itemId) {
             var myModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
@@ -348,7 +360,5 @@
                 myModal.hide();
             });
         }
-
 </script>
 {% endblock content %}
-
