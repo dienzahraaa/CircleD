@@ -22,6 +22,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+
 @login_required(login_url='/login')
 def show_main(request):
     items = Item.objects.filter(user=request.user)
